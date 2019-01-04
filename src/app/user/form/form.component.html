@@ -1,0 +1,70 @@
+<div class="wrapper wrapper-content">
+  <div class="row">
+    <div class="ibox float-e-margins">
+      <div class="ibox-title">
+        <h5>Create User 1</h5>
+      </div>
+      <div class="ibox-content">
+        <div class="row">
+          <div class="col-lg-6">
+            <form class="form-horizontal" [formGroup]="registerForm">
+
+              <input type="hidden" name="id" id="id" value="">
+
+              <div class="form-group">
+                <label class="col-lg-4 control-label">Name<font color="red">*</font></label>
+                <div class="col-lg-8">
+                  <input formControlName="name" name="name" id="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" class="form-control">
+                  <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <span *ngIf="f.name.errors.required" class="text-danger">Name is required</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-4 control-label">Email<font color="red">*</font></label>
+                <div class="col-lg-8">
+                  <input formControlName="email" name="email" id="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" class="form-control">
+                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <span *ngIf="f.email.errors.required" class="text-danger">Email is required</span>
+                    <span *ngIf="f.email.errors.email" class="text-danger">Email must be a valid email address</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-lg-4 control-label">User name<font color="red">*</font></label>
+                <div class="col-lg-8">
+                  <input formControlName="userName" name="userName" id="userName" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }" class="form-control">
+                  <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                    <span *ngIf="f.userName.errors.required" class="text-danger">User name is required</span>
+                    <span *ngIf="f.userName.errors.minlength" class="text-danger">User name must be at least 6 characters</span>
+                  </div>
+                </div>
+              </div>
+
+              <!--<div class="form-group">-->
+                <!--<label class="col-lg-4 control-label">Email<font color="red">*</font></label>-->
+                <!--<div class="col-lg-8">-->
+                  <!--<input [(ngModel)]="userData.email" name="email" value="{{ users?.email }}" class="form-control">-->
+                  <!--<span class="text-danger" for="email" id="email-error"></span>-->
+                <!--</div>-->
+              <!--</div>-->
+
+              <div class="form-group">
+                <div class="col-lg-offset-4 col-lg-8">
+                  <button *ngIf="users" class="btn button-shadow button-margin btn-save-update" type="button" id="store-user" (click)="updateUser()"><i class="fa fa-paste"></i>Update</button>
+                  <button *ngIf="!users" class="btn button-shadow button-margin btn-save-update" type="button" id="update-user" (click)="addUser()"><i class="fa fa-paste"></i>Save</button>
+                  <button class="btn btn-danger button-shadow button-margin" type="reset"><i class="fa fa-times"></i>  Reset</button>
+                  <a href=""><button type="button" class="btn btn-go-back button-shadow button-margin">Go Back</button></a>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
