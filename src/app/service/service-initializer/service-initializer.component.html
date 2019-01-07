@@ -6,12 +6,66 @@
         <h5>Service Initializer</h5>
       </div>
 
-
-      <div class="ibox-content">
-
-      </div>
-
     </div>
   </div>
+
+  <div class="row">
+
+    <div class="col-lg-4">
+      <div class="ibox">
+        <div class="ibox-content">
+          <h3>Service Flow</h3>
+          <p class="small"><i class="fa fa-hand-o-up"></i> Drag task between list</p>
+
+          <div class="form-group">
+              <input type="text" placeholder="Block Id" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <select name="" id="" class="form-control" (change)="addNewBlock($event.target.value)">
+              <option [value]="0">-Select-</option>
+              <option [value]="1">Assign</option>
+              <option [value]="2">Function</option>
+            </select>
+          </div>
+
+          <ul class="sortable-list connectList agile-list ui-sortable">
+
+
+            <li class="success-element" id="task7" cdkDrag>
+              Many desktop publishing packages and web page editors now use Lorem Ipsum as their default.
+              <div class="agile-detail">
+                <a href="#" class="pull-right btn btn-xs btn-white">Mark</a>
+                <i class="fa fa-clock-o"></i> 05.04.2015
+              </div>
+            </li>
+            <li class="info-element" id="task8" cdkDrag>
+              Sometimes by accident, sometimes on purpose (injected humour and the like).
+              <div class="agile-detail">
+                <a href="#" class="pull-right btn btn-xs btn-white">Mark</a>
+                <i class="fa fa-clock-o"></i> 16.11.2015
+              </div>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-8">
+      <div class="ibox">
+        <div class="ibox-content">
+          <h3>Component Details</h3>
+
+          <app-service-assign-block *ngIf="block == 1"></app-service-assign-block>
+
+          <app-service-function-block *ngIf="block == 2"></app-service-function-block>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
 </div>
 

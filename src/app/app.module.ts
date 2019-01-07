@@ -16,13 +16,16 @@ import { FormComponent } from './user/form/form.component';
 
 import { UserServiceService } from './user/user-service.service';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { DataTablesModule } from 'angular-datatables';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import * as $ from 'jquery';
 import { ServiceListComponent } from './service/service-list/service-list.component';
 import { ServiceInitializerComponent } from './service/service-initializer/service-initializer.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { ServiceAssignBlockComponent } from './service/service-initializer/service-assign-block/service-assign-block.component';
+import { ServiceFunctionBlockComponent } from './service/service-initializer/service-function-block/service-function-block.component';
 
 
 @NgModule({
@@ -39,6 +42,8 @@ import { ServiceInitializerComponent } from './service/service-initializer/servi
     FormComponent,
     ServiceListComponent,
     ServiceInitializerComponent,
+    ServiceAssignBlockComponent,
+    ServiceFunctionBlockComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +52,8 @@ import { ServiceInitializerComponent } from './service/service-initializer/servi
     FormsModule,
     DataTablesModule,
     ReactiveFormsModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
+    DragDropModule
   ],
   providers: [UserServiceService],
   bootstrap: [AppComponent]

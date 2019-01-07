@@ -8,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class ServiceInitializerComponent implements OnInit {
 
   constructor() { }
-
+  block: any;
   ngOnInit() {
   }
 
+  addNewBlock(block: number) {
+    console.log(block);
+    this.block = block;
+    return this.block;
+  }
 }
