@@ -21,6 +21,8 @@ import { DataTablesModule } from 'angular-datatables';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import * as $ from 'jquery';
+import { ServiceListComponent } from './service/service-list/service-list.component';
+import { ServiceInitializerComponent } from './service/service-initializer/service-initializer.component';
 
 
 @NgModule({
@@ -35,6 +37,8 @@ import * as $ from 'jquery';
     DashboardComponent,
     ListComponent,
     FormComponent,
+    ServiceListComponent,
+    ServiceInitializerComponent,
   ],
   imports: [
     BrowserModule,
