@@ -1,4 +1,4 @@
-<form [formGroup]="assignBlockForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="assignBlockForm">
   <div class="row">
     <div class="col-sm-4">
       <div class="form-group">
@@ -20,7 +20,12 @@
   </div>
 
   <div class="row">
-    <button type="button" class="btn button-shadow button-margin btn-save-update">Add Service</button>
+    <button type="button" class="btn button-shadow button-margin btn-save-update" (click)="addBlock()">Add Service</button>
   </div>
 </form>
+
+<json-schema-form
+  loadExternalAssets="true"
+  [(ngModel)]="exampleJsonObject">
+</json-schema-form>
 
