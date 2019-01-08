@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, NgModule, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {HttpClientComponent} from '../../http-client/http-client.component';
+import {ServiceComponentService} from '../serviceComponent-service';
 declare var $: any;
 
 class Serive {
@@ -15,6 +17,10 @@ class DataTablesResponse {
   recordsTotal: number;
 }
 
+@NgModule({
+  providers: [ServiceComponentService],
+})
+
 @Component({
   selector: 'app-service-list',
   templateUrl: './service-list.component.html',
@@ -26,49 +32,21 @@ export class ServiceListComponent implements OnInit {
   services: Serive[];
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private serviceComponentService: ServiceComponentService
   ) {  }
 
   ngOnInit() {
+    console.log(111);
+    this.loadData();
   }
 
   loadData() {
-    const that = this;
-    this.dtOptions = {
-      responsive: true,
-      pagingType: 'full_numbers',
-      serverSide: true,
-      processing: true,
-      ajax: (dataTablesParameters: any, callback) => {
-        that.http
-          .post<DataTablesResponse>(
-            'http://localhost:8080/api/services',
-            dataTablesParameters, {}
-          ).subscribe(resp => {
-          that.services = resp.data;
-
-          callback({
-            recordsTotal: resp.recordsTotal,
-            recordsFiltered: resp.recordsFiltered,
-            data: []
-          });
-
-        });
-      },
-      columns: [
-        {
-          data: 'name',
-          name: 'name',
-          'searchable': true,
-          'orderable': true,
-        }, {
-          data: 'id',
-          name: 'id',
-          'searchable': true,
-          'orderable': true,
-        }
-      ]
-    };
+    this.serviceComponentService.getAllServices().then(response => {
+      this.services = response;
+    }).catch( error_response => {
+      console.log('error response : ' + JSON.stringify(error_response, null, 2));
+    });
   }
 
   addNewService() {
