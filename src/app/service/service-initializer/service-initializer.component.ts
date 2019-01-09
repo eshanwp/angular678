@@ -9,9 +9,12 @@ export class ServiceInitializerComponent implements OnInit {
   constructor() { }
   block: any;
   blockId: number;
-  mainJson = {};
+  nodeList = [];
+  blockType: string;
   exampleJsonObject: any;
   jsonFormSchema: string;
+
+
   ngOnInit() {
 
   }
@@ -22,9 +25,18 @@ export class ServiceInitializerComponent implements OnInit {
   }
 
   getAssignBlockJson(jsonOutput: any) {
+    debugger;
+    jsonOutput['blockId'] = this.blockId;
+    jsonOutput['nextBlockId'] = this.blockId;
+    jsonOutput['blockType'] = 'ASSIGN';
+    jsonOutput['styleClass'] = 'fa fa-terminal';
+    jsonOutput['description'] = 'This is an assign block';
+
+    this.blockType = '0';
+    this.blockId = 0;
     console.log(this.blockId);
-    this.mainJson[this.blockId] = jsonOutput;
-    console.log(this.mainJson);
+    this.nodeList.push(jsonOutput);
+    console.log(this.nodeList);
   }
 
 

@@ -14,6 +14,7 @@ export class ServiceAssignBlockComponent implements OnInit {
   assignBlockForm: FormGroup;
   jsonSchemaForm: any;
 
+
   @Output() assignBlockJson = new EventEmitter<any>();
   constructor(
     private formBuilder: FormBuilder,
@@ -28,17 +29,17 @@ export class ServiceAssignBlockComponent implements OnInit {
     });
   }
 
-  addBlock() {
-    this.assignBlockJson.emit(this.assignBlockForm.value);
+  addToFlow($event) {
+    //debugger;
+    this.assignBlockJson.emit($event.schema);
   }
 
   private readJson(): void {
     // console.log('trying to rad json');
     this.serviceComponentService.getJsonSchemaForm('/assign-block.json').then(res => {
       this.jsonSchemaForm = res;
-      // console.log('hhhhhh : ' + JSON.stringify(res, null, 2));
     }).catch(error_res => {
-      // console.log('hhhhhh aaaa: ' + JSON.stringify(error_res, null, 2));
+      console.log('My error : ' + JSON.stringify(error_res, null, 2));
     });
 
   }
