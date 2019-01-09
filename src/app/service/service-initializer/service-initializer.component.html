@@ -18,7 +18,7 @@
           <p class="small"><i class="fa fa-hand-o-up"></i> Drag task between list</p>
 
           <div class="form-group">
-              <input type="text" placeholder="Block Id" class="form-control">
+              <input type="text" placeholder="Block Id" [(ngModel)]="blockId" class="form-control">
           </div>
 
           <div class="form-group">
@@ -57,7 +57,7 @@
         <div class="ibox-content">
           <h3>Component Details</h3>
 
-          <app-service-assign-block *ngIf="block == 1"></app-service-assign-block>
+          <app-service-assign-block *ngIf="block == 1" (assignBlockJson)="getAssignBlockJson($event)"></app-service-assign-block>
 
           <app-service-function-block *ngIf="block == 2"></app-service-function-block>
 

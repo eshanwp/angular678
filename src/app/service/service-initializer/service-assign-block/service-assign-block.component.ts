@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-service-assign-block',
@@ -9,13 +9,19 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class ServiceAssignBlockComponent implements OnInit {
 
   assignBlockForm: FormGroup;
+
+  @Output() assignBlockJson = new EventEmitter<any>();
   constructor(
     private formBuilder: FormBuilder
   ) { }
   ngOnInit() {
+    this.assignBlockForm = new FormGroup({
+      name: new FormControl(),
+      value: new FormControl()
+    });
   }
 
-  onSubmit() {
-    // console.log(this.assignBlockForm.value);
+  addBlock() {
+    this.assignBlockJson.emit(this.assignBlockForm.value);
   }
 }

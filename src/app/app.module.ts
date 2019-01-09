@@ -23,13 +23,14 @@ import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import * as $ from 'jquery';
 import { ServiceListComponent } from './service/service-list/service-list.component';
 import { ServiceInitializerComponent } from './service/service-initializer/service-initializer.component';
-//import {DragDropModule} from '@angular/cdk/drag-drop';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ServiceAssignBlockComponent } from './service/service-initializer/service-assign-block/service-assign-block.component';
 import { ServiceFunctionBlockComponent } from './service/service-initializer/service-function-block/service-function-block.component';
 import { HttpClientComponent } from './http-client/http-client.component';
 import {ServiceComponentService} from './service/serviceComponent-service';
 //import {ServiceInitializerComponent} from './service/service-initializer/service-initializer.component';
 
+import { MaterialDesignFrameworkModule } from 'angular6-json-schema-form';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {ServiceComponentService} from './service/serviceComponent-service';
     FormsModule,
     DataTablesModule,
     ReactiveFormsModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
+    MaterialDesignFrameworkModule
   ],
   providers: [UserServiceService, ServiceComponentService, HttpClientComponent],
   bootstrap: [AppComponent]
