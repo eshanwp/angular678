@@ -28,7 +28,6 @@ import { ServiceAssignBlockComponent } from './service/service-initializer/servi
 import { ServiceFunctionBlockComponent } from './service/service-initializer/service-function-block/service-function-block.component';
 import { HttpClientComponent } from './http-client/http-client.component';
 import {ServiceComponentService} from './service/serviceComponent-service';
-//import {ServiceInitializerComponent} from './service/service-initializer/service-initializer.component';
 
 import { MaterialDesignFrameworkModule } from 'angular6-json-schema-form';
 
@@ -58,7 +57,8 @@ import { MaterialDesignFrameworkModule } from 'angular6-json-schema-form';
     DataTablesModule,
     ReactiveFormsModule,
     SweetAlert2Module.forRoot(),
-    MaterialDesignFrameworkModule
+    MaterialDesignFrameworkModule,
+    DragDropModule
   ],
   providers: [UserServiceService, ServiceComponentService, HttpClientComponent],
   bootstrap: [AppComponent]

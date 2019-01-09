@@ -11,6 +11,7 @@ export class ServiceAssignBlockComponent implements OnInit {
   assignBlockForm: FormGroup;
 
   @Output() assignBlockJson = new EventEmitter<any>();
+  exampleJsonObject: any;
   constructor(
     private formBuilder: FormBuilder
   ) { }
