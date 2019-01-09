@@ -33,4 +33,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
  - https://www.npmjs.com/package/sweetalert2
 
  - https://github.com/sweetalert2/ngx-sweetalert2
+ 
+ - https://www.npmjs.com/package/angular7-json-schema-form
+ 
+ - npm i --save @angular/flex-layout@6.0.0-beta.15
 

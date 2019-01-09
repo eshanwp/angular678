@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ServiceComponentService} from '../../serviceComponent-service';
 
 
+
 @Component({
   selector: 'app-service-assign-block',
   templateUrl: './service-assign-block.component.html',
@@ -23,6 +24,7 @@ export class ServiceAssignBlockComponent implements OnInit {
     private serviceComponentService: ServiceComponentService
   ) { }
   ngOnInit() {
+
     this.readJson();
     this.assignBlockForm = new FormGroup({
       name: new FormControl(),

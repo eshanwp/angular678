@@ -24,7 +24,7 @@
     "@angular/router": "~7.1.0",
     "@toverux/ngx-sweetalert2": "^4.0.0",
     "angular-datatables": "^7.0.0",
-    "angular6-json-schema-form": "^7.0.2",
+    "angular7-json-schema-form": "^1.0.4",
     "core-js": "^2.5.4",
     "datatables.net": "^1.10.19",
     "datatables.net-bs4": "^1.10.19",
