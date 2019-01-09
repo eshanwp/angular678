@@ -1,31 +1,32 @@
-<form [formGroup]="assignBlockForm">
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="form-group">
-        <label class="col-sm-4 control-label">Name</label>
-        <div class="col-sm-8">
-          <input type="text" class="form-control" formControlName="name" name="name" id="name">
-        </div>
-      </div>
-    </div>
+<!--<form [formGroup]="assignBlockForm">-->
+  <!--<div class="row">-->
+    <!--<div class="col-sm-4">-->
+      <!--<div class="form-group">-->
+        <!--<label class="col-sm-4 control-label">Name</label>-->
+        <!--<div class="col-sm-8">-->
+          <!--<input type="text" class="form-control" formControlName="name" name="name" id="name">-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
 
-    <div class="col-sm-4">
-      <div class="form-group">
-        <label class="col-sm-4 control-label">Value</label>
-        <div class="col-sm-8">
-          <textarea class="form-control" width="100%" formControlName="value" name="value" id="value"></textarea>
-        </div>
-      </div>
-    </div>
-  </div>
+    <!--<div class="col-sm-4">-->
+      <!--<div class="form-group">-->
+        <!--<label class="col-sm-4 control-label">Value</label>-->
+        <!--<div class="col-sm-8">-->
+          <!--<textarea class="form-control" width="100%" formControlName="value" name="value" id="value"></textarea>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
 
-  <div class="row">
-    <button type="button" class="btn button-shadow button-margin btn-save-update" (click)="addBlock()">Add Service</button>
-  </div>
-</form>
+  <!--<div class="row">-->
+    <!--<button type="button" class="btn button-shadow button-margin btn-save-update" (click)="addBlock()">Add Service</button>-->
+  <!--</div>-->
+<!--</form>-->
 
 <json-schema-form
   loadExternalAssets="true"
-  [(ngModel)]="exampleJsonObject">
+  [schema]="yourJsonSchema"
+  framework="no-framework">
 </json-schema-form>
 
