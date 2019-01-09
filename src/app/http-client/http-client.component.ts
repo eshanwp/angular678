@@ -1,5 +1,4 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-//import {, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 
@@ -11,7 +10,6 @@ import {Observable, of} from 'rxjs';
 @Injectable()
 export class HttpClientComponent implements OnInit {
 
-  //endpoint = 'http://localhost:8095/web-client';
   endpoint = 'http://localhost:8094';
   httpOptions = {
     headers: new HttpHeaders({
@@ -32,6 +30,11 @@ export class HttpClientComponent implements OnInit {
   httpGet(url: string): Promise<any> {
     console.log('my url : ' + this.endpoint + url);
     return this.httpClient.get<any>(this.endpoint + url).toPromise();
+  }
+
+  public getJSON(path: string): Promise<any> {
+    return this.httpClient.get('../../assets/json_schema_forms/' + path).toPromise();
+
   }
 
   public handleError<T>(operation = 'operation', result?: T) {

@@ -15,5 +15,8 @@ export class ServiceComponentService implements OnInit {
     return this.httpClientComponent.httpGet('/service');
   }
 
+  public getJsonSchemaForm (path: string): Promise<any> {
+    return this.httpClientComponent.getJSON(path);
+  }
 
 }
