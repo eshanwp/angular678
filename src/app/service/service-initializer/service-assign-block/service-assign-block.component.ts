@@ -1,7 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ServiceComponentService} from '../../serviceComponent-service';
-
+import {ServiceInitializerComponent} from '../service-initializer.component';
 
 
 @Component({
@@ -11,36 +9,21 @@ import {ServiceComponentService} from '../../serviceComponent-service';
 })
 export class ServiceAssignBlockComponent implements OnInit {
 
-  assignBlockForm: FormGroup;
-  jsonSchemaForm: any;
-
-
   @Output() assignBlockJson = new EventEmitter<any>();
+  jsonSchemaForm;
   constructor(
-    private formBuilder: FormBuilder,
-    private serviceComponentService: ServiceComponentService
+    private serviceInitializerComponent: ServiceInitializerComponent
   ) { }
   ngOnInit() {
 
-    this.readJson();
-    this.assignBlockForm = new FormGroup({
-      name: new FormControl(),
-      value: new FormControl()
+    this.serviceInitializerComponent.readJson('/assign-block.json').then(res => {
+      this.jsonSchemaForm = res;
+    }).catch(error => {
     });
   }
 
   addToFlow($event) {
-    //debugger;
     this.assignBlockJson.emit($event.schema);
   }
 
-  private readJson(): void {
-    // console.log('trying to rad json');
-    this.serviceComponentService.getJsonSchemaForm('/assign-block.json').then(res => {
-      this.jsonSchemaForm = res;
-    }).catch(error_res => {
-      console.log('My error : ' + JSON.stringify(error_res, null, 2));
-    });
-
-  }
 }

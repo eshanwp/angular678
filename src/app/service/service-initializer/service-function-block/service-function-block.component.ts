@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {ServiceInitializerComponent} from '../service-initializer.component';
 
 @Component({
   selector: 'app-service-function-block',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServiceFunctionBlockComponent implements OnInit {
 
-  constructor() { }
+  @Output() functionBlockJson = new EventEmitter<any>();
+  jsonSchemaForm;
+  constructor(
+    private serviceInitializerComponent: ServiceInitializerComponent
+  ) { }
 
   ngOnInit() {
+    this.serviceInitializerComponent.readJson('/service_function_list.xml').then(res => {
+      debugger;
+      this.jsonSchemaForm = res;
+    }).catch(error => {
+    });
+  }
+
+  addToFlow($event) {
+    this.functionBlockJson.emit($event.schema);
   }
 
 }

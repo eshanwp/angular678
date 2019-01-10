@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {ServiceComponentService} from '../serviceComponent-service';
 
 @Component({
   selector: 'app-service-initializer',
@@ -6,38 +7,54 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./service-initializer.component.css']
 })
 export class ServiceInitializerComponent implements OnInit {
-  constructor() { }
-  block: any;
-  blockId: number;
+  constructor(
+    private serviceComponentService: ServiceComponentService
+  ) { }
+  block: string;
   nodeList = [];
-  blockType: string;
-  exampleJsonObject: any;
-  jsonFormSchema: string;
+  blockType;
+  blockTypeName;
+  serviceName: any;
+  serviceFlow = [];
+  mainServiceArray = [];
 
+  data: Array<Object> = [
+    {id: 'ASSIGN', name: 'ASSIGN'},
+    {id: 'FUNCTION', name: 'FUNCTION'},
+    {id: 'BRANCH', name: 'BRANCH'},
+    {id: 'RETURN', name: 'RETURN'},
+    {id: 'DEFAULT', name: 'DEFAULT'}
+  ];
 
   ngOnInit() {
 
   }
 
-  addNewBlock(block: number) {
-    this.block = block;
-    return this.block;
+  addNewBlock() {
+    this.blockTypeName = this.blockType.id;
   }
 
-  getAssignBlockJson(jsonOutput: any) {
-    debugger;
-    jsonOutput['blockId'] = this.blockId;
-    jsonOutput['nextBlockId'] = this.blockId;
-    jsonOutput['blockType'] = 'ASSIGN';
-    jsonOutput['styleClass'] = 'fa fa-terminal';
-    jsonOutput['description'] = 'This is an assign block';
+  getBlockJson(jsonOutput: any, blockType: string, styleClass: string) {
+    // console.log(jsonOutput);
+    this.serviceFlow['id'] = jsonOutput['id'];
+    this.serviceFlow['nextNode'] = jsonOutput['next-node'];
+    this.serviceFlow['type'] = blockType;
+    this.serviceFlow['styleClass'] = styleClass;
+    this.serviceFlow['description'] = blockType + ' BLOCK';
 
-    this.blockType = '0';
-    this.blockId = 0;
-    console.log(this.blockId);
-    this.nodeList.push(jsonOutput);
-    console.log(this.nodeList);
+    this.blockType = '';
+    this.blockTypeName = '';
+    jsonOutput['type'] = blockType;
+    this.nodeList.push(this.serviceFlow);
+    this.mainServiceArray.push(jsonOutput);
+    console.log(this.mainServiceArray);
+  }
+
+  public readJson(jsonSchemaFormPath: string): Promise<any> {
+    return this.serviceComponentService.getJsonSchemaForm(jsonSchemaFormPath);
+
   }
 
 
 }
+

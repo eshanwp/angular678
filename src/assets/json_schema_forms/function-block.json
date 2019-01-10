@@ -1,0 +1,31 @@
+{
+  "schema": {
+    "title": " ",
+    "type": "object",
+    "properties": {
+      "id": {
+        "title": "Block Id",
+        "type": "number"
+      },
+      "next-node": {
+        "title": "Next Node",
+        "type": "number"
+      },
+      "class": {
+        "title": "System Client",
+        "type": "string",
+        "enum": [ "a", "b", "c" ]
+      },
+      "method": {
+        "title": "Function",
+        "type": "string",
+        "enum": [ "a", "b", "c" ]
+      },
+      "Param": {
+        "title": "Param 1",
+        "type": "string"
+      }
+    },
+    "required": [ "id", "next-node","class","method"]
+  }
+}

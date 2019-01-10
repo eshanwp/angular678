@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<modules>
+  <module name="OCSClient">
+    <function name="queryCustomer">
+      <param name="msisdn"/>
+      <param name="channel"/>
+      <param name="ip"/>
+      <param name="jsono"/>
+      <helpdec>Used to retrive OCS customer info.
+        Mandatory parms:msisdn,channel,ip
+        i.e. jsono input {"msisdn":"777337369","channel":"ivr","ip":"127.0.0.1"}</helpdec>
+    </function>
+    <function name="QueryBalance">
+      <param name="param1"/>
+      <param name="param2"/>
+      <param name="param3"/>
+      <helpdec>Test Help QueryBalance</helpdec>
+    </function>
+    <function name="ChangeProduct">
+      <param name="param1"/>
+      <param name="param2"/>
+      <param name="param3"/>
+      <param name="param4"/>
+      <param name="param5"/>
+      <param name="param6"/>
+      <helpdec>Test Help ChangeProduct</helpdec>
+    </function>
+    <function name="querySubInfo">
+      <param name="param1"/>
+      <param name="param2"/>
+    </function>
+    <function name="changeOptionalOffer">
+      <param name="msisdn"/>
+      <param name="prodId"/>
+      <param name="channel"/>
+      <param name="ip"/>
+    </function>
+  </module>
+
+  <module name="DBClient">
+    <function name="sqlCall">
+      <param name="sql"/>
+      <param name="dbName"/>
+    </function>
+  </module>
+
+  <module name="MifeClient">
+    <function name="get">
+      <param name="url"/>
+      <param name="json"/>
+      <param name="mifeapp"/>
+    </function>
+    <function name="put">
+      <param name="url"/>
+      <param name="json"/>
+      <param name="mifeapp"/>
+    </function>
+    <function name="post">
+      <param name="url"/>
+      <param name="json"/>
+      <param name="mifeapp"/>
+    </function>
+    <function name="delete">
+      <param name="url"/>
+      <param name="json"/>
+      <param name="mifeapp"/>
+      <param name="mifeapp2"/>
+    </function>
+  </module>
+</modules>
