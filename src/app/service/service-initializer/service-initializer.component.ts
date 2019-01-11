@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ServiceComponentService} from '../serviceComponent-service';
+import {getMatIconFailedToSanitizeLiteralError} from '@angular/material';
 
 @Component({
   selector: 'app-service-initializer',
@@ -17,6 +18,7 @@ export class ServiceInitializerComponent implements OnInit {
   serviceName: any;
   serviceFlow = [];
   mainServiceArray = [];
+  nodeData: any;
 
   data: Array<Object> = [
     {id: 'ASSIGN', name: 'ASSIGN'},
@@ -34,21 +36,58 @@ export class ServiceInitializerComponent implements OnInit {
     this.blockTypeName = this.blockType.id;
   }
 
-  getBlockJson(jsonOutput: any, blockType: string, styleClass: string) {
-    // console.log(jsonOutput);
-    this.serviceFlow['id'] = jsonOutput['id'];
-    this.serviceFlow['nextNode'] = jsonOutput['next-node'];
-    this.serviceFlow['type'] = blockType;
-    this.serviceFlow['styleClass'] = styleClass;
-    this.serviceFlow['description'] = blockType + ' BLOCK';
+  createAssignNodeDataObject(jsonOutput: any, type: string, symbol: string) {
+    jsonOutput['type'] = type;
+    jsonOutput['symbol'] = symbol;
 
+    this.nodeList.push(jsonOutput);
     this.blockType = '';
     this.blockTypeName = '';
-    jsonOutput['type'] = blockType;
-    this.nodeList.push(this.serviceFlow);
-    this.mainServiceArray.push(jsonOutput);
-    console.log(this.mainServiceArray);
   }
+
+ /* createFunctionNodeDataObject() {
+
+  }
+
+  createBranchNodeDataObject() {
+
+  }
+
+  createDefaultNodeDataObject() {
+
+  }
+
+  createReturnNodeDataObject() {
+
+  }*/
+
+  submitJson() {
+    let jsonToSbmit = {};
+    jsonToSbmit['name'] = this.serviceName;
+    jsonToSbmit['status'] = 'Active';
+    jsonToSbmit['data'] = this.nodeList;
+    this.serviceComponentService.createServiceDefiniton(JSON.stringify(jsonToSbmit, null, 2)).then(response => {
+      console.log('create resposne : ' + JSON.stringify(response, null, 2));
+    }).catch( error => {
+      console.log('create error : ' + JSON.stringify(error, null, 2));
+    });
+  }
+
+
+  onNodeClick($event) {
+    debugger;
+    console.log('clicked node');
+    for (let i = 0; i < this.nodeList.length; i++) {
+      let node = this.nodeList[i];
+      if (node['id'] === $event) {
+        this.nodeData = node;
+        this.blockTypeName = node['type'];
+      }
+    }
+
+  }
+
+
 
   public readJson(jsonSchemaFormPath: string): Promise<any> {
     return this.serviceComponentService.getJsonSchemaForm(jsonSchemaFormPath);

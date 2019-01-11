@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ServiceInitializerComponent} from '../service-initializer.component';
 
 
@@ -10,7 +10,9 @@ import {ServiceInitializerComponent} from '../service-initializer.component';
 export class ServiceAssignBlockComponent implements OnInit {
 
   @Output() assignBlockJson = new EventEmitter<any>();
+  @Input() schemaData: any;
   jsonSchemaForm;
+  dataObject: any;
   constructor(
     private serviceInitializerComponent: ServiceInitializerComponent
   ) { }
@@ -23,7 +25,8 @@ export class ServiceAssignBlockComponent implements OnInit {
   }
 
   addToFlow($event) {
-    this.assignBlockJson.emit($event.schema);
+     this.assignBlockJson.emit($event.schema);
+    //this.assignBlockJson.emit(this.dataObject);
   }
 
 }

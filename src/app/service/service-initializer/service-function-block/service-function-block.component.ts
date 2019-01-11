@@ -10,20 +10,22 @@ export class ServiceFunctionBlockComponent implements OnInit {
 
   @Output() functionBlockJson = new EventEmitter<any>();
   jsonSchemaForm;
+  dataObject: any;
   constructor(
     private serviceInitializerComponent: ServiceInitializerComponent
   ) { }
 
   ngOnInit() {
-    this.serviceInitializerComponent.readJson('/service_function_list.xml').then(res => {
-      debugger;
+    this.serviceInitializerComponent.readJson('/function-block.json').then(res => {
       this.jsonSchemaForm = res;
     }).catch(error => {
+      console.log('functions bloc json getting error : ' + JSON.stringify(error, null, 2));
     });
   }
 
   addToFlow($event) {
-    this.functionBlockJson.emit($event.schema);
+     this.functionBlockJson.emit($event.schema);
+    // this.functionBlockJson.emit(this.dataObject);
   }
 
 }

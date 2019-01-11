@@ -11,6 +11,11 @@ export class ServiceComponentService implements OnInit {
   constructor(private httpClientComponent: HttpClientComponent) {
   }
 
+  public createServiceDefiniton(payload: any): Promise<any> {
+    debugger;
+    return this.httpClientComponent.httpPost('/service', payload);
+  }
+
   public getAllServices(): Promise<any> {
     return this.httpClientComponent.httpGet('/service');
   }

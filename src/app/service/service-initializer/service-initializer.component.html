@@ -32,20 +32,16 @@
 
             <!--mainJson-->
 
-
             <li *ngFor="let node of nodeList" class="success-element" cdkDrag>
-              <div class="row">
-
+              <div class="row" (click)="onNodeClick(node.id)">
                 <div class="col-sm-2" style="font-size: 47px;">
-                  <i class="{{node.styleClass}}"></i>
+                  <i class="{{node.symbol}}"></i>
                 </div>
-
-
                 <div class="col-sm-10">
                   <br>
                   <label>Block Id : </label> {{node.id}}
                   <br>
-                  <label>Next Block Id : </label> {{node.nextNode}}
+                  <label>Next Block Id : </label> {{node['next-node']}}
                   <br>
                   <label>Description : </label> {{node.description}}
                   <br>
@@ -53,7 +49,6 @@
                     <a href="#" class="pull-right btn btn-xs btn-white">Mark</a>
                     <i class="fa fa-clock-o"></i> 05.04.2015
                   </div>
-
                 </div>
               </div>
 
@@ -62,6 +57,7 @@
           </ul>
 
         </div>
+        <input type="button" value="Click" (click)="submitJson()" />
       </div>
     </div>
 
@@ -69,8 +65,8 @@
       <div class="ibox">
         <div class="ibox-content">
 
-          <app-service-assign-block *ngIf="blockTypeName == 'ASSIGN'" (assignBlockJson)="getBlockJson($event,'ASSIGN','fa fa-terminal')"></app-service-assign-block>
-          <app-service-function-block *ngIf="blockTypeName == 'FUNCTION'" (functionBlockJson)="getBlockJson($event,'FUNCTION','fa fa-branch')"></app-service-function-block>
+          <app-service-assign-block *ngIf="blockTypeName == 'ASSIGN'" (schemaData)="nodeData" (assignBlockJson)="createAssignNodeDataObject($event, 'ASSIGN', 'fa fa-terminal')"></app-service-assign-block>
+          <app-service-function-block *ngIf="blockTypeName == 'FUNCTION'" (functionBlockJson)="createAssignNodeDataObject($event,'FUNCTION','fa fa-branch')"></app-service-function-block>
 
         </div>
       </div>
