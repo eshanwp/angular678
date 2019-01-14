@@ -29,6 +29,9 @@ import { ServiceFunctionBlockComponent } from './service/service-initializer/ser
 import { HttpClientComponent } from './http-client/http-client.component';
 import {ServiceComponentService} from './service/serviceComponent-service';
 import { Bootstrap4FrameworkModule } from 'angular7-json-schema-form';
+import { DndModule } from 'ng2-dnd';
+import { TestDragComponent } from './service/service-initializer/test-drag/test-drag.component';
+
 
 
 @NgModule({
@@ -48,6 +51,7 @@ import { Bootstrap4FrameworkModule } from 'angular7-json-schema-form';
     ServiceAssignBlockComponent,
     ServiceFunctionBlockComponent,
     HttpClientComponent,
+    TestDragComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +62,8 @@ import { Bootstrap4FrameworkModule } from 'angular7-json-schema-form';
     ReactiveFormsModule,
     SweetAlert2Module.forRoot(),
     DragDropModule,
-    Bootstrap4FrameworkModule
+    Bootstrap4FrameworkModule,
+    DndModule.forRoot()
   ],
   providers: [UserServiceService, ServiceComponentService, HttpClientComponent],
   bootstrap: [AppComponent]

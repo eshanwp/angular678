@@ -21,6 +21,7 @@ export class ServiceInitializerComponent implements OnInit {
   nodeData: any;
 
   data: Array<Object> = [
+    {id: 'DRAG', name: 'DRAG'},
     {id: 'ASSIGN', name: 'ASSIGN'},
     {id: 'FUNCTION', name: 'FUNCTION'},
     {id: 'BRANCH', name: 'BRANCH'},
@@ -35,6 +36,29 @@ export class ServiceInitializerComponent implements OnInit {
   addNewBlock() {
     this.blockTypeName = this.blockType.id;
   }
+
+  onNodeDrag(name: string) {
+    debugger;
+    this.blockTypeName = name;
+  }
+
+  transferAssignData: Object = {id: 0, name: 'ASSIGN'};
+  transferFunctionData: Object = {id: 0, name: 'FUNCTION'};
+  transferBranchData: Object = {id: 0, name: 'BRANCH'};
+  transferReturnData: Object = {id: 0, name: 'RETURN'};
+  transferDefaultData: Object = {id: 0, name: 'DEFAULT'};
+  receivedData: Array<any> = [];
+
+  transferDataSuccess($event: any) {
+    debugger;
+    this.receivedData.push($event);
+
+    this.blockTypeName = $event.dragData.id;
+    console.log('aaa : ' + $event['id']);
+  }
+
+
+
 
   createAssignNodeDataObject(jsonOutput: any, type: string, symbol: string) {
     jsonOutput['type'] = type;
