@@ -3,5 +3,6 @@
   [schema]="jsonSchemaForm"
   framework="bootstrap-4"
   [(data)]="dataObject"
-  (onSubmit)="addToFlow($event)">
+  (onSubmit)="addToFlow($event)"
+  (onChanges)="getClass($event)">
 </json-schema-form>

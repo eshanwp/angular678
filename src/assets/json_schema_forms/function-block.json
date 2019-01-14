@@ -14,18 +14,13 @@
       "class": {
         "title": "System Client",
         "type": "string",
-        "enum": [ "a", "b", "c" ]
+        "enum":[ "a", "b", "c" ]
       },
       "method": {
         "title": "Function",
         "type": "string",
-        "enum": [ "a", "b", "c" ]
-      },
-      "Param": {
-        "title": "Param 1",
-        "type": "string"
+        "enum":[ "x", "y", "z" ]
       }
-    },
-    "required": [ "id", "next-node","class","method"]
+    }
   }
 }
