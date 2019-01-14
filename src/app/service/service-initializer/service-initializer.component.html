@@ -56,6 +56,79 @@
 
           </ul>
 
+
+
+
+
+
+          <h4>Transfer custom data in Drag-and-Drop</h4>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="panel panel-success">
+                <div class="panel-heading">Node List</div>
+                <div class="panel-body">
+
+                  <img class="assign" src="../../../assets/img/system/BRANCH.png" dnd-draggable [dragEnabled]="true" [dragData]="transferBranchData">
+                  <img class="assign" src="../../../assets/img/system/FUNCTION.png" dnd-draggable [dragEnabled]="true" [dragData]="transferFunctionData">
+                  <img class="assign" src="../../../assets/img/system/ASSIGN.png" dnd-draggable [dragEnabled]="true" [dragData]="transferAssignData">
+
+                  <img class="assign" src="../../../assets/img/system/BRANCH.png" dnd-draggable [dragEnabled]="true" [dragData]="transferData">
+                  <img class="assign" src="../../../assets/img/system/BRANCH.png" dnd-draggable [dragEnabled]="true" [dragData]="transferData">
+
+
+                  <!--<div class="panel panel-default" dnd-draggable [dragEnabled]="true" [dragData]="transferData">
+                    <div class="panel-body assign">
+                      <img class="assign" src="../../../assets/img/system/ASSIGN.png">
+                    </div>
+                  </div>
+
+                  <div class="panel panel-default" dnd-draggable [dragEnabled]="true" [dragData]="transferData">
+                    <div class="panel-body assign">
+                      <img class="assign" src="../../../assets/img/system/ASSIGN.png">
+                    </div>
+                  </div>-->
+
+                </div>
+
+
+
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div dnd-droppable class="panel panel-info" (onDropSuccess)="transferDataSuccess($event)">
+                <div class="panel-heading">Place to drop (Items:{{receivedData.length}})</div>
+                <div class="panel-body">
+                  <div [hidden]="!receivedData.length > 0" *ngFor="let data of receivedData">
+
+                    <div class="row" (click)="onNodeClick(data.dragData.name)">
+                      <div class="col-sm-3">
+                      <img class="assign" src="../../../assets/img/system/{{data.dragData.name}}.png" dnd-draggable [dragEnabled]="false" >
+                      </div>
+                      <div class="col-sm-9">
+                        <label> Node Type : {{data.dragData.name}}</label>
+                        <br>
+                        <label> Node Id : {{data.dragData.id}}</label>
+                        <br>
+                        <label> Net Node : {{data.dragData.id}}</label>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
         </div>
         <input type="button" value="Click" (click)="submitJson()" />
       </div>
@@ -65,6 +138,7 @@
       <div class="ibox">
         <div class="ibox-content">
 
+          <app-test-drag *ngIf="blockTypeName == 'DRAG'"></app-test-drag>
           <app-service-assign-block *ngIf="blockTypeName == 'ASSIGN'" (schemaData)="nodeData" (assignBlockJson)="createAssignNodeDataObject($event, 'ASSIGN', 'fa fa-terminal')"></app-service-assign-block>
           <app-service-function-block *ngIf="blockTypeName == 'FUNCTION'" (functionBlockJson)="createAssignNodeDataObject($event,'FUNCTION','fa fa-branch')"></app-service-function-block>
 
