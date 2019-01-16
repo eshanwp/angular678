@@ -14,7 +14,12 @@
       "class": {
         "title": "System Client",
         "type": "string",
-        "enum":[ "a", "b", "c" ]
+        "links":[
+          {
+            "rel":"options",
+            "href":"./data/{state}/{city}/suburb.json"
+          }
+        ]
       },
       "method": {
         "title": "Function",
