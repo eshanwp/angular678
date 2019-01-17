@@ -68,12 +68,19 @@
                 <div class="panel-heading">Node List</div>
                 <div class="panel-body">
 
-                  <img class="assign" src="../../../assets/img/system/BRANCH.png" dnd-draggable [dragEnabled]="true" [dragData]="transferBranchData">
-                  <img class="assign" src="../../../assets/img/system/FUNCTION.png" dnd-draggable [dragEnabled]="true" [dragData]="transferFunctionData">
-                  <img class="assign" src="../../../assets/img/system/ASSIGN.png" dnd-draggable [dragEnabled]="true" [dragData]="transferAssignData">
+                  <span class="fa fa-code-fork assign" dnd-draggable [dragEnabled]="true" [dragData]="transferBranchData"></span>
+                  <span class="fa fa-cubes assign" dnd-draggable [dragEnabled]="true" [dragData]="transferFunctionData"></span>
+                  <span class="fa fa-stack-overflow assign" dnd-draggable [dragEnabled]="true" [dragData]="transferAssignData"></span>
 
-                  <img class="assign" src="../../../assets/img/system/BRANCH.png" dnd-draggable [dragEnabled]="true" [dragData]="transferData">
-                  <img class="assign" src="../../../assets/img/system/BRANCH.png" dnd-draggable [dragEnabled]="true" [dragData]="transferData">
+                  <span class="fa fa-delicious assign" dnd-draggable [dragEnabled]="true" [dragData]="defalut_transferData"></span>
+                  <span class="fa fa-share-square-o assign" dnd-draggable [dragEnabled]="true" [dragData]="return_transferData"></span>
+
+                  <!--<img class="assign" src="../../../assets/img/system/BRANCH.png" dnd-draggable [dragEnabled]="true" [dragData]="transferBranchData">-->
+                  <!--<img class="assign" src="../../../assets/img/system/FUNCTION.png" dnd-draggable [dragEnabled]="true" [dragData]="transferFunctionData">
+                  <img class="assign" src="../../../assets/img/system/ASSIGN.png" dnd-draggable [dragEnabled]="true" [dragData]="transferAssignData">-->
+
+                  <!--<img class="assign" src="../../../assets/img/system/BRANCH.png" dnd-draggable [dragEnabled]="true" [dragData]="transferData">
+                  <img class="assign" src="../../../assets/img/system/BRANCH.png" dnd-draggable [dragEnabled]="true" [dragData]="transferData">-->
 
 
                 </div>
@@ -92,14 +99,15 @@
 
                     <div class="row node-active-{{data.uuid == activeNodeUuid}}" (click)="onNodeClick(data)">
                       <div class="col-sm-2">
-                      <img class="assign" src="../../../assets/img/system/{{data.name}}.png" dnd-draggable [dragEnabled]="false" >
+                        <span class="{{data.symbol}}" dnd-draggable [dragEnabled]="false"></span>
+                      <!--<img class="assign" src="../../../assets/img/system/{{data.name}}.png" dnd-draggable [dragEnabled]="false" >-->
                       </div>
                       <div class="col-sm-10">
                         <label> Node Type : {{data.name}}</label>
                         <br>
                         <label> Node Id : {{data.id}}</label>
                         <br>
-                        <label> {{data.uuid}}</label>
+                        <label>sym : {{data.symbol}}</label>
 
                       </div>
                     </div>
