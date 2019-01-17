@@ -2,8 +2,6 @@
   loadExternalAssets="false"
   [schema]="jsonSchemaForm"
   framework="bootstrap-4"
-  [(data)]="dataObject"
-  (onSubmit)="addToFlow($event)"
-  (onChanges)="getClass($event)">
+  [(data)]="schemaData"
+  (onSubmit)="addToFlow($event)">
 </json-schema-form>
-

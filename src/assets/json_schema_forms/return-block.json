@@ -1,0 +1,35 @@
+{
+  "schema": {
+    "title": " ",
+    "type": "object",
+    "properties": {
+      "id": {
+        "title": "Block Id",
+        "type": "number"
+      },
+      "next-node": {
+        "title": "Next node",
+        "type": "number"
+      },
+      "out-param": {
+        "title": " ",
+        "type": "array",
+        "items": {
+          "title": " ",
+          "type": "object",
+          "properties": {
+            "name": {
+              "title": "Variable Name",
+              "type": "string"
+            },
+            "value": {
+              "title": "Variable Value",
+              "type": "string"
+            }
+          },
+          "required": [ "name", "value" ]
+        }
+      }
+    }
+  }
+}

@@ -12,7 +12,6 @@ export class ServiceComponentService implements OnInit {
   }
 
   public createServiceDefiniton(payload: any): Promise<any> {
-    debugger;
     return this.httpClientComponent.httpPost('/service', payload);
   }
 
@@ -22,6 +21,10 @@ export class ServiceComponentService implements OnInit {
 
   public getJsonSchemaForm (path: string): Promise<any> {
     return this.httpClientComponent.getJSON(path);
+  }
+
+  public getFunctions (): Promise<any> {
+    return this.httpClientComponent.httpGet('/service/get-functions');
   }
 
 }

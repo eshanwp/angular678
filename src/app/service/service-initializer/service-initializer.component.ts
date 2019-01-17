@@ -29,6 +29,13 @@ export class ServiceInitializerComponent implements OnInit {
     {id: 'DEFAULT', name: 'DEFAULT'}
   ];
 
+  transferAssignData: Object = {id: 0, name: 'ASSIGN'};
+  transferFunctionData: Object = {id: 0, name: 'FUNCTION'};
+  transferBranchData: Object = {id: 0, name: 'BRANCH'};
+  transferReturnData: Object = {id: 0, name: 'RETURN'};
+  transferDefaultData: Object = {id: 0, name: 'DEFAULT'};
+  receivedData: Array<any> = [];
+
   ngOnInit() {
 
   }
@@ -38,19 +45,10 @@ export class ServiceInitializerComponent implements OnInit {
   }
 
   onNodeDrag(name: string) {
-    debugger;
     this.blockTypeName = name;
   }
 
-  transferAssignData: Object = {id: 0, name: 'ASSIGN'};
-  transferFunctionData: Object = {id: 0, name: 'FUNCTION'};
-  transferBranchData: Object = {id: 0, name: 'BRANCH'};
-  transferReturnData: Object = {id: 0, name: 'RETURN'};
-  transferDefaultData: Object = {id: 0, name: 'DEFAULT'};
-  receivedData: Array<any> = [];
-
   transferDataSuccess($event: any) {
-    debugger;
     this.receivedData.push($event);
 
     this.blockTypeName = $event.dragData.id;
@@ -86,7 +84,7 @@ export class ServiceInitializerComponent implements OnInit {
   }*/
 
   submitJson() {
-    let jsonToSbmit = {};
+    const jsonToSbmit = {};
     jsonToSbmit['name'] = this.serviceName;
     jsonToSbmit['status'] = 'Active';
     jsonToSbmit['data'] = this.nodeList;
@@ -99,10 +97,9 @@ export class ServiceInitializerComponent implements OnInit {
 
 
   onNodeClick($event) {
-    debugger;
     console.log('clicked node');
     for (let i = 0; i < this.nodeList.length; i++) {
-      let node = this.nodeList[i];
+      const node = this.nodeList[i];
       if (node['id'] === $event) {
         this.nodeData = node;
         this.blockTypeName = node['type'];
@@ -110,8 +107,6 @@ export class ServiceInitializerComponent implements OnInit {
     }
 
   }
-
-
 
   public readJson(jsonSchemaFormPath: string): Promise<any> {
     return this.serviceComponentService.getJsonSchemaForm(jsonSchemaFormPath);

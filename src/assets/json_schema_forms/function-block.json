@@ -14,17 +14,12 @@
       "class": {
         "title": "System Client",
         "type": "string",
-        "links":[
-          {
-            "rel":"options",
-            "href":"./data/{state}/{city}/suburb.json"
-          }
-        ]
+        "enum": [ "OCSClient", "DBClient", "MifeClient"]
       },
       "method": {
         "title": "Function",
         "type": "string",
-        "enum":[ "x", "y", "z" ]
+        "enum":[ "queryCustomer", "QueryBalance", "ChangeProduct", "querySubInfo", "changeOptionalOffer"]
       }
     }
   }

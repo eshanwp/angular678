@@ -30,7 +30,10 @@ import { HttpClientComponent } from './http-client/http-client.component';
 import {ServiceComponentService} from './service/serviceComponent-service';
 import { Bootstrap4FrameworkModule } from 'angular7-json-schema-form';
 import { DndModule } from 'ng2-dnd';
-import { TestDragComponent } from './service/service-initializer/test-drag/test-drag.component';
+import { ServiceBranchBlockComponent } from './service/service-initializer/service-branch-block/service-branch-block.component';
+import { ServiceReturnBlockComponent } from './service/service-initializer/service-return-block/service-return-block.component';
+import { ServiceDefaultBlockComponent } from './service/service-initializer/service-default-block/service-default-block.component';
+// import { TestDragComponent } from './service/service-initializer/test-drag/test-drag.component';
 
 
 
@@ -51,7 +54,10 @@ import { TestDragComponent } from './service/service-initializer/test-drag/test-
     ServiceAssignBlockComponent,
     ServiceFunctionBlockComponent,
     HttpClientComponent,
-    TestDragComponent,
+    ServiceBranchBlockComponent,
+    ServiceReturnBlockComponent,
+    ServiceDefaultBlockComponent
+    // TestDragComponent,
   ],
   imports: [
     BrowserModule,

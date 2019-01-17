@@ -1,0 +1,80 @@
+{
+  "schema": {
+    "title": " ",
+    "type": "object",
+    "properties": {
+      "id": {
+        "title": "Block Id",
+        "type": "number"
+      },
+      "cases": {
+        "title": " ",
+        "type": "array",
+        "items": {
+          "title": " ",
+          "type": "object",
+          "properties": {
+            "next-node": {
+              "title": "Next node",
+              "type": "string"
+            },
+            "id": {
+              "title": "Case Id",
+              "type": "string"
+            },
+            "expression": {
+              "title": "Condition",
+              "type": "string"
+            },
+            "variables": {
+              "title": "All fields are required ",
+              "type": "array",
+              "items": {
+                "title": " ",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "title": "Variable Name",
+                    "type": "string"
+                  },
+                  "value": {
+                    "title": "Variable Value",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "default": {
+        "title": "Default Case ",
+        "type": "object",
+        "properties": {
+          "next-node": {
+            "title": "Next node",
+            "type": "string"
+          },
+          "variables": {
+            "title": " ",
+            "type": "array",
+            "items": {
+              "title": " ",
+              "type": "object",
+              "properties": {
+                "name": {
+                  "title": "Variable Name",
+                  "type": "string"
+                },
+                "value": {
+                  "title": "Variable Value",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

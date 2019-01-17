@@ -26,7 +26,6 @@ export class ServiceAssignBlockComponent implements OnInit {
 
   addToFlow($event) {
      this.assignBlockJson.emit($event.schema);
-    //this.assignBlockJson.emit(this.dataObject);
   }
 
 }
