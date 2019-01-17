@@ -20,6 +20,25 @@
         "title": "Function",
         "type": "string",
         "enum":[ "queryCustomer", "QueryBalance", "ChangeProduct", "querySubInfo", "changeOptionalOffer"]
+      },
+      "param": {
+        "title": "All fields are required ",
+        "type": "array",
+        "items": {
+          "title": " ",
+          "type": "object",
+          "properties": {
+            "name": {
+              "title": "Variable Name",
+              "type": "string"
+            },
+            "value": {
+              "title": "Variable Value",
+              "type": "string"
+            }
+          },
+          "required": [ "name", "value" ]
+        }
       }
     }
   }

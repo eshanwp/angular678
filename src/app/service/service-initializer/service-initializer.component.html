@@ -21,16 +21,16 @@
             <input type="text" placeholder="SERVICE NAME" [(ngModel)]="serviceName" class="form-control">
           </div>
 
-          <div class="form-group">
+        <!--  <div class="form-group">
             <select name="" id="" class="form-control" [(ngModel)]="blockType" (change)="addNewBlock()">
               <option value="" selected="selected">-SELECT-</option>
               <option *ngFor="let item of data" [ngValue]="item">{{item.name}}</option>
             </select>
-          </div>
+          </div>-->
 
-          <ul class="sortable-list connectList agile-list ui-sortable">
+       <!--   <ul class="sortable-list connectList agile-list ui-sortable">
 
-            <!--mainJson-->
+            &lt;!&ndash;mainJson&ndash;&gt;
 
             <li *ngFor="let node of nodeList" class="success-element" cdkDrag>
               <div class="row" (click)="onNodeClick(node.id)">
@@ -54,7 +54,7 @@
 
             </li>
 
-          </ul>
+          </ul>-->
 
 
 
@@ -76,18 +76,6 @@
                   <img class="assign" src="../../../assets/img/system/BRANCH.png" dnd-draggable [dragEnabled]="true" [dragData]="transferData">
 
 
-                  <!--<div class="panel panel-default" dnd-draggable [dragEnabled]="true" [dragData]="transferData">
-                    <div class="panel-body assign">
-                      <img class="assign" src="../../../assets/img/system/ASSIGN.png">
-                    </div>
-                  </div>
-
-                  <div class="panel panel-default" dnd-draggable [dragEnabled]="true" [dragData]="transferData">
-                    <div class="panel-body assign">
-                      <img class="assign" src="../../../assets/img/system/ASSIGN.png">
-                    </div>
-                  </div>-->
-
                 </div>
 
 
@@ -100,18 +88,18 @@
               <div dnd-droppable class="panel panel-info" (onDropSuccess)="transferDataSuccess($event)">
                 <div class="panel-heading">Place to drop (Items:{{receivedData.length}})</div>
                 <div class="panel-body">
-                  <div [hidden]="!receivedData.length > 0" *ngFor="let data of receivedData">
+                  <div class="node-bg" [hidden]="!receivedData.length > 0" *ngFor="let data of receivedData">
 
-                    <div class="row" (click)="onNodeClick(data.dragData.name)">
-                      <div class="col-sm-3">
-                      <img class="assign" src="../../../assets/img/system/{{data.dragData.name}}.png" dnd-draggable [dragEnabled]="false" >
+                    <div class="row node-active-{{data.uuid == activeNodeUuid}}" (click)="onNodeClick(data)">
+                      <div class="col-sm-2">
+                      <img class="assign" src="../../../assets/img/system/{{data.name}}.png" dnd-draggable [dragEnabled]="false" >
                       </div>
-                      <div class="col-sm-9">
-                        <label> Node Type : {{data.dragData.name}}</label>
+                      <div class="col-sm-10">
+                        <label> Node Type : {{data.name}}</label>
                         <br>
-                        <label> Node Id : {{data.dragData.id}}</label>
+                        <label> Node Id : {{data.id}}</label>
                         <br>
-                        <label> Net Node : {{data.dragData.id}}</label>
+                        <label> {{data.uuid}}</label>
 
                       </div>
                     </div>
@@ -139,11 +127,12 @@
         <div class="ibox-content">
 
           <!--<app-test-drag *ngIf="blockTypeName == 'DRAG'"></app-test-drag>-->
-          <app-service-assign-block *ngIf="blockTypeName == 'ASSIGN'" (schemaData)="nodeData" (assignBlockJson)="createAssignNodeDataObject($event, 'ASSIGN', 'fa fa-stack-overflow')"></app-service-assign-block>
-          <app-service-function-block *ngIf="blockTypeName == 'FUNCTION'" (functionBlockJson)="createAssignNodeDataObject($event,'FUNCTION','fa fa-cubes')"></app-service-function-block>
+          <app-service-assign-block *ngIf="blockTypeName == 'ASSIGN'"  [schemaData]="nodeData" (assignBlockJson)="createAssignNodeDataObject($event, 'ASSIGN', 'fa fa-stack-overflow')"></app-service-assign-block>
+          <app-service-function-block *ngIf="blockTypeName == 'FUNCTION'"  [schemaData]="nodeData" (functionBlockJson)="createAssignNodeDataObject($event,'FUNCTION','fa fa-cubes')"></app-service-function-block>
           <app-service-branch-block *ngIf="blockTypeName == 'BRANCH'" (branchBlockJson)="createAssignNodeDataObject($event,'BRANCH','fa fa-code-fork')"></app-service-branch-block>
           <app-service-default-block *ngIf="blockTypeName == 'DEFAULT'" (defaultBlockJson)="createAssignNodeDataObject($event,'DEFAULT','fa fa-delicious')"></app-service-default-block>
           <app-service-return-block *ngIf="blockTypeName == 'RETURN'" (returnBlockJson)="createAssignNodeDataObject($event,'RETURN','fa fa-share-square-o')"></app-service-return-block>
+
 
         </div>
       </div>

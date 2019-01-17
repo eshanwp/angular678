@@ -1,6 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ServiceComponentService} from '../serviceComponent-service';
 import {getMatIconFailedToSanitizeLiteralError} from '@angular/material';
+import {Observable} from 'rxjs';
+
+import uuidv1 from 'uuid/v1';
 
 @Component({
   selector: 'app-service-initializer',
@@ -19,6 +22,7 @@ export class ServiceInitializerComponent implements OnInit {
   serviceFlow = [];
   mainServiceArray = [];
   nodeData: any;
+  activeNodeUuid: string = null;
 
   data: Array<Object> = [
     {id: 'DRAG', name: 'DRAG'},
@@ -36,6 +40,8 @@ export class ServiceInitializerComponent implements OnInit {
   transferDefaultData: Object = {id: 0, name: 'DEFAULT'};
   receivedData: Array<any> = [];
 
+
+
   ngOnInit() {
 
   }
@@ -45,43 +51,43 @@ export class ServiceInitializerComponent implements OnInit {
   }
 
   onNodeDrag(name: string) {
+    debugger;
     this.blockTypeName = name;
   }
 
+
   transferDataSuccess($event: any) {
-    this.receivedData.push($event);
+    debugger;
+    this.nodeData = null;
+    let tempNode = {};
+    let tempUuid = uuidv1();
+    this.activeNodeUuid = tempUuid;
 
-    this.blockTypeName = $event.dragData.id;
-    console.log('aaa : ' + $event['id']);
+    tempNode['id'] = $event['dragData']['id'];
+    tempNode['name'] = $event['dragData']['name'];
+    tempNode['uuid'] = this.activeNodeUuid;
+
+    this.receivedData.push(tempNode);
+    this.blockTypeName = $event.dragData.name;
   }
-
-
 
 
   createAssignNodeDataObject(jsonOutput: any, type: string, symbol: string) {
+    debugger;
+
+    let nodeIndex = this.nodeList.findIndex( node => node.uuid === this.activeNodeUuid);
+
     jsonOutput['type'] = type;
     jsonOutput['symbol'] = symbol;
+    jsonOutput['uuid'] = this.activeNodeUuid;
 
-    this.nodeList.push(jsonOutput);
+    nodeIndex < 0 ?  this.nodeList.push(jsonOutput) : this.nodeList.splice(nodeIndex, 1, jsonOutput);
+
     this.blockType = '';
     this.blockTypeName = '';
+    this.activeNodeUuid = null;
   }
 
- /* createFunctionNodeDataObject() {
-
-  }
-
-  createBranchNodeDataObject() {
-
-  }
-
-  createDefaultNodeDataObject() {
-
-  }
-
-  createReturnNodeDataObject() {
-
-  }*/
 
   submitJson() {
     const jsonToSbmit = {};
@@ -97,11 +103,18 @@ export class ServiceInitializerComponent implements OnInit {
 
 
   onNodeClick($event) {
+    debugger;
     console.log('clicked node');
     for (let i = 0; i < this.nodeList.length; i++) {
-      const node = this.nodeList[i];
-      if (node['id'] === $event) {
-        this.nodeData = node;
+      let node = this.nodeList[i];
+      if (node['uuid'] === $event.uuid) {
+
+        this.activeNodeUuid = $event.uuid;
+
+        let nodeDataObject = {};
+        nodeDataObject['schema'] = node;
+
+        this.nodeData = nodeDataObject;
         this.blockTypeName = node['type'];
       }
     }
@@ -110,6 +123,11 @@ export class ServiceInitializerComponent implements OnInit {
 
   public readJson(jsonSchemaFormPath: string): Promise<any> {
     return this.serviceComponentService.getJsonSchemaForm(jsonSchemaFormPath);
+
+  }
+
+  public readxml(jsonSchemaFormPath: string): Observable<any> {
+    return this.serviceComponentService.getXml(jsonSchemaFormPath);
 
   }
 

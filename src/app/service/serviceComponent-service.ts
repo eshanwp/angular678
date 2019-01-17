@@ -23,6 +23,10 @@ export class ServiceComponentService implements OnInit {
     return this.httpClientComponent.getJSON(path);
   }
 
+  public getXml (path: string): Observable<any> {
+    return this.httpClientComponent.getXML(path);
+  }
+
   public getFunctions (): Promise<any> {
     return this.httpClientComponent.httpGet('/service/get-functions');
   }

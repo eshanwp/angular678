@@ -16,6 +16,11 @@ export class HttpClientComponent implements OnInit {
       'Content-Type': 'application/json'
     })
   };
+  httpOptions2 = {
+    headers: new HttpHeaders({
+      'Content-Type': '*/*'
+    })
+  };
 
   constructor(private httpClient: HttpClient) {
   }
@@ -34,7 +39,17 @@ export class HttpClientComponent implements OnInit {
 
   public getJSON(path: string): Promise<any> {
     return this.httpClient.get('../../assets/json_schema_forms/' + path).toPromise();
+  }
 
+  /*public getXml(path: string): Promise<any> {
+    return this.httpClient.get('../../assets/json_schema_forms/' + path).toPromise();
+  }
+*/
+  public getXML(path: string): any {
+    debugger;
+    this.httpClient.get('../../assets/json_schema_forms/' + path, this.httpOptions2).subscribe( res => {
+    return res;
+    });
   }
 
   public handleError<T>(operation = 'operation', result?: T) {

@@ -28,4 +28,8 @@ export class ServiceAssignBlockComponent implements OnInit {
      this.assignBlockJson.emit($event.schema);
   }
 
+  checkData() {
+    console.log(JSON.stringify(this.schemaData, null, 2));
+  }
+
 }

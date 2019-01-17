@@ -14,3 +14,11 @@
   width: 45px;
   margin: 5px;
 }
+
+.node-bg {
+  background-color: cadetblue;
+  margin-bottom: 3px;
+}
+.node-active-true {
+  background-color: #2aca76 !important;
+}
