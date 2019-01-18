@@ -19,6 +19,10 @@ export class ServiceComponentService implements OnInit {
     return this.httpClientComponent.httpGet('/service');
   }
 
+  public getServiceById(id: number): Promise<any> {
+    return this.httpClientComponent.httpGet('/service?id=' + id);
+  }
+
   public getJsonSchemaForm (path: string): Promise<any> {
     return this.httpClientComponent.getJSON(path);
   }

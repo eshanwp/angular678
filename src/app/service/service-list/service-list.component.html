@@ -26,7 +26,7 @@
                 <td>{{ service.name }}</td>
                 <td>
                   <a title="Edit Service">
-                    <button type="button" class="btn button-shadow btn-edit">
+                    <button type="button" class="btn button-shadow btn-edit" (click)="editService(service.id)">
                       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                     </button>
                   </a>

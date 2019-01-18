@@ -43,6 +43,7 @@ export class ServiceListComponent implements OnInit {
 
   loadData() {
     this.serviceComponentService.getAllServices().then(response => {
+      //debugger;
       this.services = response;
     }).catch( error_response => {
       console.log('error response : ' + JSON.stringify(error_response, null, 2));
@@ -51,5 +52,11 @@ export class ServiceListComponent implements OnInit {
 
   addNewService() {
     this.router.navigate(['service/service-initializer']);
+  }
+
+  editService(id: number): void {
+    this.router.navigate(['service/service-initializer'], { queryParams: { serviceId: id } });
+
+
   }
 }

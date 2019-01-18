@@ -33,7 +33,6 @@ import { DndModule } from 'ng2-dnd';
 import { ServiceBranchBlockComponent } from './service/service-initializer/service-branch-block/service-branch-block.component';
 import { ServiceReturnBlockComponent } from './service/service-initializer/service-return-block/service-return-block.component';
 import { ServiceDefaultBlockComponent } from './service/service-initializer/service-default-block/service-default-block.component';
-// import { TestDragComponent } from './service/service-initializer/test-drag/test-drag.component';
 
 
 
@@ -57,7 +56,6 @@ import { ServiceDefaultBlockComponent } from './service/service-initializer/serv
     ServiceBranchBlockComponent,
     ServiceReturnBlockComponent,
     ServiceDefaultBlockComponent
-    // TestDragComponent,
   ],
   imports: [
     BrowserModule,

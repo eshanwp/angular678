@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ServiceComponentService} from '../serviceComponent-service';
-import {getMatIconFailedToSanitizeLiteralError} from '@angular/material';
 import {Observable} from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
 
 import uuidv1 from 'uuid/v1';
 
@@ -11,9 +11,7 @@ import uuidv1 from 'uuid/v1';
   styleUrls: ['./service-initializer.component.css']
 })
 export class ServiceInitializerComponent implements OnInit {
-  constructor(
-    private serviceComponentService: ServiceComponentService
-  ) { }
+
   block: string;
   nodeList = [];
   blockType;
@@ -23,6 +21,7 @@ export class ServiceInitializerComponent implements OnInit {
   mainServiceArray = [];
   nodeData: any;
   activeNodeUuid: string = null;
+  serviceId: number;
 
   data: Array<Object> = [
     {id: 'DRAG', name: 'DRAG'},
@@ -41,8 +40,15 @@ export class ServiceInitializerComponent implements OnInit {
   receivedData: Array<any> = [];
 
 
+  constructor(private serviceComponentService: ServiceComponentService, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
+    debugger;
+    this.serviceId = +this.route.snapshot.queryParamMap.get('id');
+    if (this.serviceId !== undefined && this.serviceId !== null && !(this.serviceId < 1)) {
+      this.getServiceById();
+    }
 
   }
 
@@ -77,13 +83,13 @@ export class ServiceInitializerComponent implements OnInit {
   createAssignNodeDataObject(jsonOutput: any, type: string, symbol: string) {
     debugger;
 
-    let nodeIndex = this.nodeList.findIndex( node => node.uuid === this.activeNodeUuid);
+    let nodeIndex = this.nodeList.findIndex(node => node.uuid === this.activeNodeUuid);
 
     jsonOutput['type'] = type;
     jsonOutput['symbol'] = symbol;
     jsonOutput['uuid'] = this.activeNodeUuid;
 
-    nodeIndex < 0 ?  this.nodeList.push(jsonOutput) : this.nodeList.splice(nodeIndex, 1, jsonOutput);
+    nodeIndex < 0 ? this.nodeList.push(jsonOutput) : this.nodeList.splice(nodeIndex, 1, jsonOutput);
 
     this.blockType = '';
     this.blockTypeName = '';
@@ -98,7 +104,7 @@ export class ServiceInitializerComponent implements OnInit {
     jsonToSbmit['data'] = this.nodeList;
     this.serviceComponentService.createServiceDefiniton(JSON.stringify(jsonToSbmit, null, 2)).then(response => {
       console.log('create resposne : ' + JSON.stringify(response, null, 2));
-    }).catch( error => {
+    }).catch(error => {
       console.log('create error : ' + JSON.stringify(error, null, 2));
     });
   }
@@ -131,6 +137,16 @@ export class ServiceInitializerComponent implements OnInit {
   public readxml(jsonSchemaFormPath: string): Observable<any> {
     return this.serviceComponentService.getXml(jsonSchemaFormPath);
 
+  }
+
+  public getServiceById() {
+    this.serviceComponentService.getServiceById(this.serviceId).then(response => {
+      console.log('create resposne : ' + JSON.stringify(response, null, 2));
+
+
+    }).catch(error => {
+      console.log('create error : ' + JSON.stringify(error, null, 2));
+    });
   }
 
 
