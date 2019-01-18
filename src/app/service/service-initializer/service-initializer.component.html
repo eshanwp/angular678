@@ -21,112 +21,83 @@
             <input type="text" placeholder="SERVICE NAME" [(ngModel)]="serviceName" class="form-control">
           </div>
 
-        <!--  <div class="form-group">
-            <select name="" id="" class="form-control" [(ngModel)]="blockType" (change)="addNewBlock()">
-              <option value="" selected="selected">-SELECT-</option>
-              <option *ngFor="let item of data" [ngValue]="item">{{item.name}}</option>
-            </select>
-          </div>-->
+          <div class="form-group">
 
-       <!--   <ul class="sortable-list connectList agile-list ui-sortable">
+            <h4>Transfer custom data in Drag-and-Drop</h4>
 
-            &lt;!&ndash;mainJson&ndash;&gt;
+            <a title="Assign Block">
+              <button class="btn btn-info dim" type="button" dnd-draggable [dragEnabled]="true"
+                      [dragData]="transferAssignData">
+                <i class="fa fa-stack-overflow"></i>
+              </button>
+            </a>
 
-            <li *ngFor="let node of nodeList" class="success-element" cdkDrag>
-              <div class="row" (click)="onNodeClick(node.id)">
-                <div class="col-sm-2" style="font-size: 47px;">
-                  <i class="{{node.symbol}}"></i>
-                </div>
-                <div class="col-sm-10">
-                  <br>
-                  <label>Block Id : </label> {{node.id}}
-                  <br>
-                  <label>Next Block Id : </label> {{node['next-node']}}
-                  <br>
-                  <label>Description : </label> {{node.description}}
-                  <br>
-                  <div class="agile-detail">
-                    <a href="#" class="pull-right btn btn-xs btn-white">Mark</a>
-                    <i class="fa fa-clock-o"></i> 05.04.2015
-                  </div>
-                </div>
-              </div>
+            <a title="Function Block">
+              <button class="btn btn-warning dim" type="button" dnd-draggable [dragEnabled]="true"
+                      [dragData]="transferFunctionData">
+                <i class="fa fa-cubes"></i>
+              </button>
+            </a>
 
-            </li>
+            <a title="Branch Block">
+              <button class="btn btn-danger dim" type="button" dnd-draggable [dragEnabled]="true"
+                      [dragData]="transferBranchData">
+                <i class="fa fa-code-fork"></i>
+              </button>
+            </a>
 
-          </ul>-->
+            <a title="Return Block">
+              <button class="btn btn-primary dim" type="button" dnd-draggable [dragEnabled]="true"
+                      [dragData]="return_transferData">
+                <i class="fa fa-share-square-o"></i>
+              </button>
+            </a>
 
+            <a title="Default Block">
+              <button class="btn btn-default dim" type="button" dnd-draggable [dragEnabled]="true"
+                      [dragData]="defalut_transferData">
+                <i class="fa fa-delicious"></i>
+              </button>
+            </a>
 
-
-
-
-
-          <h4>Transfer custom data in Drag-and-Drop</h4>
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="panel panel-success">
-                <div class="panel-heading">Node List</div>
-                <div class="panel-body">
-
-                  <span class="fa fa-code-fork assign" dnd-draggable [dragEnabled]="true" [dragData]="transferBranchData"></span>
-                  <span class="fa fa-cubes assign" dnd-draggable [dragEnabled]="true" [dragData]="transferFunctionData"></span>
-                  <span class="fa fa-stack-overflow assign" dnd-draggable [dragEnabled]="true" [dragData]="transferAssignData"></span>
-
-                  <span class="fa fa-delicious assign" dnd-draggable [dragEnabled]="true" [dragData]="defalut_transferData"></span>
-                  <span class="fa fa-share-square-o assign" dnd-draggable [dragEnabled]="true" [dragData]="return_transferData"></span>
-
-                  <!--<img class="assign" src="../../../assets/img/system/BRANCH.png" dnd-draggable [dragEnabled]="true" [dragData]="transferBranchData">-->
-                  <!--<img class="assign" src="../../../assets/img/system/FUNCTION.png" dnd-draggable [dragEnabled]="true" [dragData]="transferFunctionData">
-                  <img class="assign" src="../../../assets/img/system/ASSIGN.png" dnd-draggable [dragEnabled]="true" [dragData]="transferAssignData">-->
-
-                  <!--<img class="assign" src="../../../assets/img/system/BRANCH.png" dnd-draggable [dragEnabled]="true" [dragData]="transferData">
-                  <img class="assign" src="../../../assets/img/system/BRANCH.png" dnd-draggable [dragEnabled]="true" [dragData]="transferData">-->
-
-
-                </div>
-
-
-
-              </div>
-            </div>
           </div>
-          <div class="row">
-            <div class="col-sm-12">
-              <div dnd-droppable class="panel panel-info" (onDropSuccess)="transferDataSuccess($event)">
-                <div class="panel-heading">Place to drop (Items:{{receivedData.length}})</div>
-                <div class="panel-body">
-                  <div class="node-bg" [hidden]="!receivedData.length > 0" *ngFor="let data of receivedData">
 
-                    <div class="row node-active-{{data.uuid == activeNodeUuid}}" (click)="onNodeClick(data)">
-                      <div class="col-sm-2">
-                        <span class="{{data.symbol}}" dnd-draggable [dragEnabled]="false"></span>
-                      <!--<img class="assign" src="../../../assets/img/system/{{data.name}}.png" dnd-draggable [dragEnabled]="false" >-->
-                      </div>
-                      <div class="col-sm-10">
-                        <label> Node Type : {{data.name}}</label>
-                        <br>
-                        <label> Node Id : {{data.id}}</label>
-                        <br>
-                        <label>sym : {{data.symbol}}</label>
+          <div class="ibox">
+            <div class="ibox-content">
+              <h3>Place to Drop</h3>
 
+              <ul class="sortable-list connectList agile-list ui-sortable" dnd-droppable
+                  (onDropSuccess)="transferDataSuccess($event)">
+                Drop Item Count : (Items:{{receivedData.length}})
+                <li [hidden]="!receivedData.length > 0" *ngFor="let data of receivedData"
+                    class="{{data.element_css}}-element node-active-{{data.uuid == activeNodeUuid}}" (click)="onNodeClick(data)">
+                  <div class="row">
+                    <div class="col-sm-4" style="font-size: 47px;">
+                      <i class="{{data.symbol}}" dnd-draggable [dragEnabled]="false"></i>
+                    </div>
+                    <div class="col-sm-8">
+                      <br>
+                      <label>Node Type : </label> {{data.name}}
+                      <br>
+                      <label>Node Id : </label> {{data.id}}
+                      <br>
+                      <div class="agile-detail">
+                        <a href="#" class="pull-right btn btn-xs btn-white">Remove</a>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+
+                </li>
+
+              </ul>
+
             </div>
           </div>
 
-
-
-
-
-
-
-
+          <input type="button" class="btn btn-w-m btn-info" value="Submit" (click)="submitJson()"/>
 
         </div>
-        <input type="button" value="Click" (click)="submitJson()" />
+
       </div>
     </div>
 
@@ -135,11 +106,16 @@
         <div class="ibox-content">
 
           <!--<app-test-drag *ngIf="blockTypeName == 'DRAG'"></app-test-drag>-->
-          <app-service-assign-block *ngIf="blockTypeName == 'ASSIGN'"  [schemaData]="nodeData" (assignBlockJson)="createAssignNodeDataObject($event, 'ASSIGN', 'fa fa-stack-overflow')"></app-service-assign-block>
-          <app-service-function-block *ngIf="blockTypeName == 'FUNCTION'"  [schemaData]="nodeData" (functionBlockJson)="createAssignNodeDataObject($event,'FUNCTION','fa fa-cubes')"></app-service-function-block>
-          <app-service-branch-block *ngIf="blockTypeName == 'BRANCH'" (branchBlockJson)="createAssignNodeDataObject($event,'BRANCH','fa fa-code-fork')"></app-service-branch-block>
-          <app-service-default-block *ngIf="blockTypeName == 'DEFAULT'" (defaultBlockJson)="createAssignNodeDataObject($event,'DEFAULT','fa fa-delicious')"></app-service-default-block>
-          <app-service-return-block *ngIf="blockTypeName == 'RETURN'" (returnBlockJson)="createAssignNodeDataObject($event,'RETURN','fa fa-share-square-o')"></app-service-return-block>
+          <app-service-assign-block *ngIf="blockTypeName == 'ASSIGN'" [schemaData]="nodeData"
+                                    (assignBlockJson)="createAssignNodeDataObject($event, 'ASSIGN', 'fa fa-stack-overflow')"></app-service-assign-block>
+          <app-service-function-block *ngIf="blockTypeName == 'FUNCTION'" [schemaData]="nodeData"
+                                      (functionBlockJson)="createAssignNodeDataObject($event,'FUNCTION','fa fa-cubes')"></app-service-function-block>
+          <app-service-branch-block *ngIf="blockTypeName == 'BRANCH'"
+                                    (branchBlockJson)="createAssignNodeDataObject($event,'BRANCH','fa fa-code-fork')"></app-service-branch-block>
+          <app-service-default-block *ngIf="blockTypeName == 'DEFAULT'"
+                                     (defaultBlockJson)="createAssignNodeDataObject($event,'DEFAULT','fa fa-delicious')"></app-service-default-block>
+          <app-service-return-block *ngIf="blockTypeName == 'RETURN'"
+                                    (returnBlockJson)="createAssignNodeDataObject($event,'RETURN','fa fa-share-square-o')"></app-service-return-block>
 
 
         </div>

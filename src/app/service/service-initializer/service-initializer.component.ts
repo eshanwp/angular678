@@ -33,11 +33,11 @@ export class ServiceInitializerComponent implements OnInit {
     {id: 'DEFAULT', name: 'DEFAULT'}
   ];
 
-  transferAssignData: Object = {id: 0, name: 'ASSIGN', symbol: 'fa fa-stack-overflow'};
-  transferFunctionData: Object = {id: 0, name: 'FUNCTION', symbol: 'fa fa-cubes'};
-  transferBranchData: Object = {id: 0, name: 'BRANCH', symbol: 'fa fa-code-fork'};
-  transferReturnData: Object = {id: 0, name: 'RETURN', symbol: 'fa fa-share-square-o'};
-  transferDefaultData: Object = {id: 0, name: 'DEFAULT', symbol: 'fa fa-delicious'};
+  transferAssignData: Object = {id: 0, name: 'ASSIGN', symbol: 'fa fa-stack-overflow', element_css: 'info'};
+  transferFunctionData: Object = {id: 0, name: 'FUNCTION', symbol: 'fa fa-cubes', element_css: 'warning'};
+  transferBranchData: Object = {id: 0, name: 'BRANCH', symbol: 'fa fa-code-fork', element_css: 'danger'};
+  transferReturnData: Object = {id: 0, name: 'RETURN', symbol: 'fa fa-share-square-o', element_css: 'primary'};
+  transferDefaultData: Object = {id: 0, name: 'DEFAULT', symbol: 'fa fa-delicious', element_css: 'default'};
   receivedData: Array<any> = [];
 
 
@@ -66,6 +66,7 @@ export class ServiceInitializerComponent implements OnInit {
     tempNode['id'] = $event['dragData']['id'];
     tempNode['name'] = $event['dragData']['name'];
     tempNode['symbol'] = $event['dragData']['symbol'];
+    tempNode['element_css'] = $event['dragData']['element_css'];
     tempNode['uuid'] = this.activeNodeUuid;
 
     this.receivedData.push(tempNode);
