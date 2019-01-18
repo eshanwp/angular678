@@ -104,11 +104,11 @@
                                     (assignBlockJson)="createAssignNodeDataObject($event, 'ASSIGN', 'fa fa-stack-overflow')"></app-service-assign-block>
           <app-service-function-block *ngIf="blockTypeName == 'FUNCTION'" [schemaData]="nodeData"
                                       (functionBlockJson)="createAssignNodeDataObject($event,'FUNCTION','fa fa-cubes')"></app-service-function-block>
-          <app-service-branch-block *ngIf="blockTypeName == 'BRANCH'"
+          <app-service-branch-block *ngIf="blockTypeName == 'BRANCH'" [schemaData]="nodeData"
                                     (branchBlockJson)="createAssignNodeDataObject($event,'BRANCH','fa fa-code-fork')"></app-service-branch-block>
-          <app-service-default-block *ngIf="blockTypeName == 'DEFAULT'"
+          <app-service-default-block *ngIf="blockTypeName == 'DEFAULT'" [schemaData]="nodeData"
                                      (defaultBlockJson)="createAssignNodeDataObject($event,'DEFAULT','fa fa-delicious')"></app-service-default-block>
-          <app-service-return-block *ngIf="blockTypeName == 'RETURN'"
+          <app-service-return-block *ngIf="blockTypeName == 'RETURN'" [schemaData]="nodeData"
                                     (returnBlockJson)="createAssignNodeDataObject($event,'RETURN','fa fa-share-square-o')"></app-service-return-block>
 
 

@@ -9,6 +9,7 @@ import {ServiceInitializerComponent} from '../service-initializer.component';
 export class ServiceBranchBlockComponent implements OnInit {
 
   @Output() branchBlockJson = new EventEmitter<any>();
+  @Input() schemaData: any;
   jsonSchemaForm;
   constructor(
     private serviceInitializerComponent: ServiceInitializerComponent
