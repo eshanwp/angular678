@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ServiceInitializerComponent} from '../service-initializer.component';
 
 @Component({
@@ -9,6 +9,7 @@ import {ServiceInitializerComponent} from '../service-initializer.component';
 export class ServiceDefaultBlockComponent implements OnInit {
 
   @Output() defaultBlockJson = new EventEmitter<any>();
+  @Input() schemaData: any;
   jsonSchemaForm;
   constructor(
     private serviceInitializerComponent: ServiceInitializerComponent

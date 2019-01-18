@@ -23,6 +23,10 @@ export class ServiceInitializerComponent implements OnInit {
   activeNodeUuid: string = null;
   serviceId: number;
 
+  public responseFlow: Observable<any>;
+  servicexxx: any;
+
+
   data: Array<Object> = [
     {id: 'DRAG', name: 'DRAG'},
     {id: 'ASSIGN', name: 'ASSIGN'},
@@ -45,11 +49,10 @@ export class ServiceInitializerComponent implements OnInit {
 
   ngOnInit() {
     debugger;
-    this.serviceId = +this.route.snapshot.queryParamMap.get('id');
+    this.serviceId = +this.route.snapshot.queryParamMap.get('serviceId');
     if (this.serviceId !== undefined && this.serviceId !== null && !(this.serviceId < 1)) {
       this.getServiceById();
     }
-
   }
 
   addNewBlock() {
@@ -141,13 +144,25 @@ export class ServiceInitializerComponent implements OnInit {
 
   public getServiceById() {
     this.serviceComponentService.getServiceById(this.serviceId).then(response => {
-      console.log('create resposne : ' + JSON.stringify(response, null, 2));
+      console.log('create resposne  : ' + JSON.stringify(response, null, 2));
 
+      this.servicexxx = response;
+      this.responseFlow = response;
+
+
+      let dataArray = [];
+      dataArray = JSON.parse(this.servicexxx[0].jsonData).data;
+      this.receivedData = [];
+      for (let i = 0; i < dataArray.length; i++) {
+        this.receivedData.push(dataArray[i]);
+        this.nodeList.push(dataArray[i]);
+      }
 
     }).catch(error => {
       console.log('create error : ' + JSON.stringify(error, null, 2));
     });
   }
+
 
 
 }
