@@ -2,6 +2,7 @@
   "schema": {
     "title": " ",
     "type": "object",
+    "required": [ "id","next-node", "output-param" ],
     "properties": {
       "id": {
         "title": "Block Id",
@@ -9,9 +10,9 @@
       },
       "next-node": {
         "title": "Next node",
-        "type": "number"
+        "type": "string"
       },
-      "out-param": {
+      "output-param": {
         "title": " ",
         "type": "array",
         "items": {

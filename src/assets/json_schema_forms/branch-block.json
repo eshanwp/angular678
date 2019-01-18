@@ -2,6 +2,7 @@
   "schema": {
     "title": " ",
     "type": "object",
+    "required": [ "id","cases", "default" ],
     "properties": {
       "id": {
         "title": "Block Id",
@@ -41,10 +42,12 @@
                     "title": "Variable Value",
                     "type": "string"
                   }
-                }
+                },
+                "required": [ "name","value" ]
               }
             }
-          }
+          },
+          "required": [ "next-node","id", "expression", "variables" ]
         }
       },
       "default": {
@@ -70,10 +73,12 @@
                   "title": "Variable Value",
                   "type": "string"
                 }
-              }
+              },
+              "required": [ "name","value" ]
             }
           }
-        }
+        },
+        "required": [ "next-node","variables" ]
       }
     }
   }
