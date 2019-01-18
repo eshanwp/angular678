@@ -2,7 +2,7 @@
   "schema": {
     "title": " ",
     "type": "object",
-    "required": [ "variables" ],
+    "required": [ "id","next-node","variables" ],
     "properties": {
       "id": {
         "title": "Block Id",
@@ -10,10 +10,10 @@
       },
       "next-node": {
         "title": "Next Node",
-        "type": "number"
+        "type": "string"
       },
       "variables": {
-        "title": "All fields are required ",
+        "title": " ",
         "type": "array",
         "items": {
           "title": " ",

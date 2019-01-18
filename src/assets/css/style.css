@@ -5212,6 +5212,12 @@ table.issue-tracker tbody tr td {
 .agile-list li.success-element {
   border-left: 3px solid #1ab394;
 }
+.agile-list li.primary-element {
+  border-left: 3px solid #16987e;
+}
+.agile-list li.default-element {
+  border-left: 3px solid #999999;
+}
 .agile-detail {
   margin-top: 5px;
   font-size: 12px;

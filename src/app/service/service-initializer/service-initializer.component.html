@@ -48,14 +48,14 @@
 
             <a title="Return Block">
               <button class="btn btn-primary dim" type="button" dnd-draggable [dragEnabled]="true"
-                      [dragData]="return_transferData">
+                      [dragData]="transferReturnData">
                 <i class="fa fa-share-square-o"></i>
               </button>
             </a>
 
             <a title="Default Block">
               <button class="btn btn-default dim" type="button" dnd-draggable [dragEnabled]="true"
-                      [dragData]="defalut_transferData">
+                      [dragData]="transferDefaultData">
                 <i class="fa fa-delicious"></i>
               </button>
             </a>
@@ -72,18 +72,12 @@
                 <li [hidden]="!receivedData.length > 0" *ngFor="let data of receivedData"
                     class="{{data.element_css}}-element node-active-{{data.uuid == activeNodeUuid}}" (click)="onNodeClick(data)">
                   <div class="row">
-                    <div class="col-sm-4" style="font-size: 47px;">
+                    <div class="col-sm-4" style="font-size: 30px;">
                       <i class="{{data.symbol}}" dnd-draggable [dragEnabled]="false"></i>
                     </div>
                     <div class="col-sm-8">
-                      <br>
                       <label>Node Type : </label> {{data.name}}
-                      <br>
                       <label>Node Id : </label> {{data.id}}
-                      <br>
-                      <div class="agile-detail">
-                        <a href="#" class="pull-right btn btn-xs btn-white">Remove</a>
-                      </div>
                     </div>
                   </div>
 
