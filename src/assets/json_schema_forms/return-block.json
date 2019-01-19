@@ -12,7 +12,7 @@
         "title": "Next node",
         "type": "string"
       },
-      "output-param": {
+      "output-params": {
         "title": " ",
         "type": "array",
         "items": {

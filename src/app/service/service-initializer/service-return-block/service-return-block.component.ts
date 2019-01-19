@@ -16,7 +16,7 @@ export class ServiceReturnBlockComponent implements OnInit {
   ) { }
   ngOnInit() {
 
-    this.serviceInitializerComponent.readJson('/default-block.json').then(res => {
+    this.serviceInitializerComponent.readJson('/return-block.json').then(res => {
       this.jsonSchemaForm = res;
     }).catch(error => {
     });

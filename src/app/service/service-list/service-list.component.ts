@@ -1,8 +1,8 @@
 import {Component, NgModule, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {HttpClientComponent} from '../../http-client/http-client.component';
 import {ServiceComponentService} from '../serviceComponent-service';
+
 declare var $: any;
 
 class Serive {

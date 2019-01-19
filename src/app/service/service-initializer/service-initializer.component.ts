@@ -16,12 +16,16 @@ export class ServiceInitializerComponent implements OnInit {
   nodeList = [];
   blockType;
   blockTypeName;
-  serviceName: any;
+  serviceName: string;
+  serviceId: number;
   serviceFlow = [];
   mainServiceArray = [];
   nodeData: any;
   activeNodeUuid: string = null;
   serviceId: number;
+
+  alertType: string;
+  notification: any = {active: false, type: null, message: null};
 
   public responseFlow: Observable<any>;
   servicexxx: any;
@@ -102,6 +106,9 @@ export class ServiceInitializerComponent implements OnInit {
 
   submitJson() {
     const jsonToSbmit = {};
+    if (this.serviceId > 0) {
+      jsonToSbmit['id'] = this.serviceId;
+    }
     jsonToSbmit['name'] = this.serviceName;
     jsonToSbmit['status'] = 'Active';
     jsonToSbmit['data'] = this.nodeList;
@@ -147,11 +154,13 @@ export class ServiceInitializerComponent implements OnInit {
       console.log('create resposne  : ' + JSON.stringify(response, null, 2));
 
       this.servicexxx = response;
-      this.responseFlow = response;
+      //this.responseFlow = response;
 
 
       let dataArray = [];
-      dataArray = JSON.parse(this.servicexxx[0].jsonData).data;
+      this.serviceName = response[0].name;
+      this.serviceId = response[0].id;
+      dataArray = JSON.parse(response[0].jsonData).data;
       this.receivedData = [];
       for (let i = 0; i < dataArray.length; i++) {
         this.receivedData.push(dataArray[i]);
