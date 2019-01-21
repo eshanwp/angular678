@@ -17,13 +17,15 @@
             <table class="table dataTables-example table-hover" datatable [dtOptions]="dtOptions">
               <thead>
               <tr>
-                <th>Name</th>
-                <th>Action</th>
+                <th>Service Name</th>
+                <th>Description</th>
+                <th>Actions</th>
               </tr>
               </thead>
               <tbody *ngIf="services?.length != 0">
               <tr *ngFor="let service of services">
-                <td>{{ service.name }}</td>
+                <td>{{ service.serviceName }}</td>
+                <td>{{ service.description }}</td>
                 <td>
                   <a title="Edit Service">
                     <button type="button" class="btn button-shadow btn-edit" (click)="editService(service.id)">

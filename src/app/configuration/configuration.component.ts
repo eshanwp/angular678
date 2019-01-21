@@ -2,6 +2,7 @@ import {Component, NgModule, OnInit} from '@angular/core';
 import {FormGroup, FormArray, FormBuilder, Validators} from '@angular/forms';
 import {ConfigurationComponentService} from './configurationComponentService';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class ConfigurationComponent implements OnInit {
   services: any = null;
 
 
-  constructor(private configurationComponentService: ConfigurationComponentService) {
+  constructor(private configurationComponentService: ConfigurationComponentService, private router: Router) {
   }
 
   ngOnInit() {
@@ -29,6 +30,7 @@ export class ConfigurationComponent implements OnInit {
 
   loadData() {
     this.configurationComponentService.getAllServices().then(response => {
+      debugger;
 
       this.services = response;
     }).catch(error_response => {
@@ -36,7 +38,8 @@ export class ConfigurationComponent implements OnInit {
     });
   }
 
-  public editService(service: any): void {
+  public editService(serviceId: any): void {
+    this.router.navigate(['configuration/configuration-initializer'], { queryParams: { serviceId: 5 } });
 
 
   }
