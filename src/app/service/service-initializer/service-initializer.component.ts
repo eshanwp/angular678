@@ -22,7 +22,7 @@ export class ServiceInitializerComponent implements OnInit {
   mainServiceArray = [];
   nodeData: any;
   activeNodeUuid: string = null;
-  serviceId: number;
+  //serviceId: number;
 
   alertType: string;
   notification: any = {active: false, type: null, message: null};
@@ -53,10 +53,22 @@ export class ServiceInitializerComponent implements OnInit {
 
   ngOnInit() {
     debugger;
-    this.serviceId = +this.route.snapshot.queryParamMap.get('serviceId');
-    if (this.serviceId !== undefined && this.serviceId !== null && !(this.serviceId < 1)) {
-      this.getServiceById();
-    }
+     //this.serviceId = +this.route.snapshot.queryParamMap.get('serviceId');
+    this.route.queryParamMap.subscribe(params => {
+      this.serviceId = +params.get('serviceId');
+
+      if (this.serviceId !== undefined && this.serviceId !== null && !(this.serviceId < 1)) {
+        this.getServiceById();
+      } else {
+        this.serviceName = null;
+        this.serviceId = 0;
+        this.receivedData = [];
+        this.nodeData = null;
+        this.blockTypeName = null;
+      }
+    });
+
+
   }
 
   addNewBlock() {
@@ -116,6 +128,9 @@ export class ServiceInitializerComponent implements OnInit {
       console.log('create resposne : ' + JSON.stringify(response, null, 2));
     }).catch(error => {
       console.log('create error : ' + JSON.stringify(error, null, 2));
+      this.notification.active = true;
+      this.notification.type = 'success';
+      this.notification.active = 'Created Successfully';
     });
   }
 
@@ -141,7 +156,6 @@ export class ServiceInitializerComponent implements OnInit {
 
   public readJson(jsonSchemaFormPath: string): Promise<any> {
     return this.serviceComponentService.getJsonSchemaForm(jsonSchemaFormPath);
-
   }
 
   public readxml(jsonSchemaFormPath: string): Observable<any> {
@@ -154,12 +168,11 @@ export class ServiceInitializerComponent implements OnInit {
       console.log('create resposne  : ' + JSON.stringify(response, null, 2));
 
       this.servicexxx = response;
-      //this.responseFlow = response;
 
 
       let dataArray = [];
       this.serviceName = response[0].name;
-      this.serviceId = response[0].id;
+      //this.serviceId = response[0].id;
       dataArray = JSON.parse(response[0].jsonData).data;
       this.receivedData = [];
       for (let i = 0; i < dataArray.length; i++) {
@@ -171,7 +184,6 @@ export class ServiceInitializerComponent implements OnInit {
       console.log('create error : ' + JSON.stringify(error, null, 2));
     });
   }
-
 
 
 }

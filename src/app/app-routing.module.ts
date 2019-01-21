@@ -10,6 +10,8 @@ import { ServiceInitializerComponent } from './service/service-initializer/servi
 // User
 import { ListComponent } from './user/list/list.component';
 import { FormComponent } from './user/form/form.component';
+import {ConfigurationComponent} from './configuration/configuration.component';
+import {ConfigurationInitializerComponent} from './configuration/configuration-initializer/configuration-initializer.component';
 
 const routes: Routes = [
 
@@ -23,6 +25,8 @@ const routes: Routes = [
       {path: 'user/form', component: FormComponent},
       {path: 'service/service-list', component: ServiceListComponent},
       {path: 'service/service-initializer', component: ServiceInitializerComponent},
+      {path: 'configuration', component: ConfigurationComponent},
+      {path: 'configuration/configuration-initializer', component: ConfigurationInitializerComponent}
 
     ]
   },

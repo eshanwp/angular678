@@ -2,16 +2,14 @@
 
   <div class="row">
     <div class=" row ibox float-e-margins">
-      <div class="col-md-3 ibox-title">
+      <div class="ibox-title">
         <h5>Service Initializer</h5>
       </div>
-      <div class="col-md-9">
-        <div class="alert {{alertType}}">
-          <strong>Danger!</strong> {{notification}}
-        </div>
-      </div>
-
     </div>
+  </div>
+
+  <div *ngIf="notification.active" class="alert {{alertType}}">
+    <strong>Danger!</strong> {{notification}}
   </div>
 
   <div class="row">

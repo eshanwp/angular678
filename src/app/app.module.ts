@@ -33,6 +33,9 @@ import { DndModule } from 'ng2-dnd';
 import { ServiceBranchBlockComponent } from './service/service-initializer/service-branch-block/service-branch-block.component';
 import { ServiceReturnBlockComponent } from './service/service-initializer/service-return-block/service-return-block.component';
 import { ServiceDefaultBlockComponent } from './service/service-initializer/service-default-block/service-default-block.component';
+import { ConfigurationComponent } from './configuration/configuration.component';
+import { ConfigurationInitializerComponent } from './configuration/configuration-initializer/configuration-initializer.component';
+import {ConfigurationComponentService} from './configuration/configurationComponentService';
 
 
 
@@ -55,7 +58,9 @@ import { ServiceDefaultBlockComponent } from './service/service-initializer/serv
     HttpClientComponent,
     ServiceBranchBlockComponent,
     ServiceReturnBlockComponent,
-    ServiceDefaultBlockComponent
+    ServiceDefaultBlockComponent,
+    ConfigurationComponent,
+    ConfigurationInitializerComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +74,7 @@ import { ServiceDefaultBlockComponent } from './service/service-initializer/serv
     Bootstrap4FrameworkModule,
     DndModule.forRoot()
   ],
-  providers: [UserServiceService, ServiceComponentService, HttpClientComponent],
+  providers: [UserServiceService, ServiceComponentService, HttpClientComponent, ConfigurationComponentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
