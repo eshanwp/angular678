@@ -36,7 +36,6 @@
     "file-system": "^2.2.2",
     "jquery": "^3.3.1",
     "ng2-dnd": "^5.0.2",
-    "ngx-accordion": "0.0.17",
     "rxjs": "~6.3.3",
     "sweetalert2": "^7.32.4",
     "tslib": "^1.9.0",

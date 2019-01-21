@@ -43,7 +43,6 @@ export class ServiceListComponent implements OnInit {
 
   loadData() {
     this.serviceComponentService.getAllServices().then(response => {
-      //debugger;
       this.services = response;
     }).catch( error_response => {
       console.log('error response : ' + JSON.stringify(error_response, null, 2));
