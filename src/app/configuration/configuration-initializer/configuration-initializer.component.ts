@@ -17,6 +17,7 @@ export class ConfigurationInitializerComponent implements OnInit {
   public myForm: FormGroup;
   public listForm: FormGroup;
   public apiList: Array<any> = [{'id': 1, 'name': 'name1'}, {'id': 2, 'name': 'name2'}];
+  acc: HTMLCollectionOf<Element>;
 
   constructor(private _fb: FormBuilder, private configurationComponentService: ConfigurationComponentService) { }
 
@@ -32,10 +33,26 @@ export class ConfigurationInitializerComponent implements OnInit {
     this.listForm = this._fb.group({
       apiIdList: [this.apiList]
     });
+    this.acc = document.getElementsByClassName('accordion');
   }
 
   testClick(data1: any) {
     debugger;
+    for (let i = 0; i < this.acc.length; i++) {
+      this.acc[i].addEventListener('click', function () {
+        /* Toggle between adding and removing the "active" class,
+        to highlight the button that controls the panel */
+        this.classList.toggle('active');
+
+        /* Toggle between hiding and showing the active panel */
+        let panel1 = this.nextElementSibling;
+        if (panel1.style.display === 'block') {
+          panel1.style.display = 'none';
+        } else {
+          panel1.style.display = 'block';
+        }
+      });
+    }
   }
 
   initActions() {
