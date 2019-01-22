@@ -2,7 +2,6 @@ import {Component, NgModule, OnInit} from '@angular/core';
 import {FormGroup, FormArray, FormBuilder, Validators} from '@angular/forms';
 import {ConfigurationComponentService} from './configurationComponentService';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AccordionModule} from 'ngx-accordion';
 
 @Component({
   selector: 'app-configuration',
@@ -10,7 +9,7 @@ import {AccordionModule} from 'ngx-accordion';
   styleUrls: ['./configuration.component.css']
 })
 @NgModule({
-    imports: [BrowserAnimationsModule, AccordionModule],})
+    imports: [BrowserAnimationsModule]})
 
 export class ConfigurationComponent implements OnInit {
 

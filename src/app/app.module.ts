@@ -23,7 +23,6 @@ import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import * as $ from 'jquery';
 import { ServiceListComponent } from './service/service-list/service-list.component';
 import { ServiceInitializerComponent } from './service/service-initializer/service-initializer.component';
-import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ServiceAssignBlockComponent } from './service/service-initializer/service-assign-block/service-assign-block.component';
 import { ServiceFunctionBlockComponent } from './service/service-initializer/service-function-block/service-function-block.component';
 import { HttpClientComponent } from './http-client/http-client.component';
@@ -36,6 +35,7 @@ import { ServiceDefaultBlockComponent } from './service/service-initializer/serv
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { ConfigurationInitializerComponent } from './configuration/configuration-initializer/configuration-initializer.component';
 import {ConfigurationComponentService} from './configuration/configurationComponentService';
+import { ConfigurationFormComponent } from './configuration/configuration-form/configuration-form.component';
 
 
 
@@ -60,7 +60,8 @@ import {ConfigurationComponentService} from './configuration/configurationCompon
     ServiceReturnBlockComponent,
     ServiceDefaultBlockComponent,
     ConfigurationComponent,
-    ConfigurationInitializerComponent
+    ConfigurationInitializerComponent,
+    ConfigurationFormComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +71,6 @@ import {ConfigurationComponentService} from './configuration/configurationCompon
     DataTablesModule,
     ReactiveFormsModule,
     SweetAlert2Module.forRoot(),
-    DragDropModule,
     Bootstrap4FrameworkModule,
     DndModule.forRoot()
   ],
