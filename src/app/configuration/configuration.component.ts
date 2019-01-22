@@ -2,6 +2,8 @@ import {Component, NgModule, OnInit} from '@angular/core';
 import {FormGroup, FormArray, FormBuilder, Validators} from '@angular/forms';
 import {ConfigurationComponentService} from './configurationComponentService';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-configuration',
@@ -9,36 +11,44 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
   styleUrls: ['./configuration.component.css']
 })
 @NgModule({
-    imports: [BrowserAnimationsModule]})
+  imports: [BrowserAnimationsModule],
+})
 
 export class ConfigurationComponent implements OnInit {
 
+  dtOptions: DataTables.Settings = {}
+  services: any = null;
 
-  acc = document.getElementsByClassName('accordion');
-  //i: number;
 
-  public call() {
-    for (let i = 0; i < this.acc.length; i++) {
-      this.acc[i].addEventListener('click', function () {
-        this.classList.toggle('active');
-        var panel = this.nextElementSibling;
-        if (panel.style.maxHeight) {
-          panel.style.maxHeight = null;
-        } else {
-          panel.style.maxHeight = panel.scrollHeight + 'px';
-        }
-      });
-    }
-  }
-
-  constructor(private _fb: FormBuilder) {
+  constructor(private configurationComponentService: ConfigurationComponentService, private router: Router) {
   }
 
   ngOnInit() {
+    console.log(111);
+    this.loadData();
+  }
+
+  loadData() {
+    this.configurationComponentService.getAllServices().then(response => {
+      debugger;
+
+      this.services = response;
+    }).catch(error_response => {
+      console.log('error response : ' + JSON.stringify(error_response, null, 2));
+    });
+  }
+
+  public editService(serviceId: any): void {
+    this.router.navigate(['configuration/configuration-initializer'], { queryParams: { serviceId: 5 } });
+
 
   }
 
-
 }
+
+
+
+
+
 
 

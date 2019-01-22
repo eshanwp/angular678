@@ -1,0 +1,68 @@
+<div class="wrapper wrapper-content">
+
+  <div class="row">
+    <div class="ibox float-e-margins">
+      <div class="ibox-title">
+        <h5>Service List</h5>
+      </div>
+
+
+      <div class="ibox-content">
+        <div class="row">
+          <a (click)="addNewService()"><button class="btn button-shadow button-margin btn-create" type="button"><i class="fa fa-paste"></i>  Create Service</button></a>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+            <table class="table dataTables-example table-hover" datatable [dtOptions]="dtOptions">
+              <thead>
+              <tr>
+                <th>Service Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+              </tr>
+              </thead>
+              <tbody *ngIf="services?.length != 0">
+              <tr *ngFor="let service of services">
+                <td>{{ service.serviceName }}</td>
+                <td>{{ service.description }}</td>
+                <td>
+                  <a title="Edit Service">
+                    <button type="button" class="btn button-shadow btn-edit" (click)="editService(service.id)">
+                      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </button>
+                  </a>
+
+                  <a title="Edit as Text">
+                    <button type="button" class="btn button-shadow btn-show">
+                      <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+                    </button>
+                  </a>
+
+                  <a title="View Diagram">
+                    <button type="button" class="btn button-shadow btn-show">
+                      <span class="fa fa-area-chart" aria-hidden="true"></span>
+                    </button>
+                  </a>
+
+                </td>
+              </tr>
+
+
+
+              </tbody>
+              <tbody *ngIf="services.length == 0">
+              <tr>
+                <td colspan="3" class="no-data-available">No data!</td>
+              </tr>
+              <tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

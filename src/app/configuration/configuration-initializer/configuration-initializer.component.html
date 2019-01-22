@@ -64,21 +64,35 @@
                   </div>
 
                   <div class="panel-body" [formGroupName]="j">
+
                     <div class="row">
-                      <div class="col-md-2"><label>firstKey</label></div>
-                      <div class="col-md-10"><input type="text" class="form-control" formControlName="firstKey"></div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-2"><label>gegEx</label></div>
-                      <div class="col-md-10"><input type="text" class="form-control" formControlName="regEx"></div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-2"><label>full Match</label></div>
-                      <div class="col-md-10"><input type="checkbox" id="fullMatch" value="1" formControlName="fullMatch" /></div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-2"><label>ignoreCase</label></div>
-                      <div class="col-md-10"><input type="checkbox" id="ignoreCase" value="1" formControlName="ignoreCase" /></div>
+
+                      <div class="col-md-3">
+                        <div class="row">
+                          <div class="col-md-3"><label>firstKey</label></div>
+                          <div class="col-md-9"><input type="text" class="form-control" formControlName="firstKey"></div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="row">
+                          <div class="col-md-3"><label>gegEx</label></div>
+                          <div class="col-md-9"><input type="text" class="form-control" formControlName="regEx"></div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="row">
+                          <div class="col-md-5"><label style="float: right">full Match</label></div>
+                          <div class="col-md-7"><input type="checkbox" style="float: left" id="fullMatch" value="1" formControlName="fullMatch" /></div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="row">
+                          <div class="col-md-5"><label style="float: right">ignoreCase</label></div>
+                          <div class="col-md-7"><input type="checkbox" style="float: left" id="ignoreCase" value="1" formControlName="ignoreCase" /></div>
+                        </div>
+                      </div>
+
+
                     </div>
 
                   </div>
@@ -132,17 +146,45 @@
 
 
 
-<button class="accordion">Section 1</button>
+
+
+
+
+
+
+<button class="accordion" (click)="testClick()">Section 1</button>
 <div class="panel1">
   <p>Lorem ipsum...</p>
 </div>
 
-<button class="accordion">Section 2</button>
+<button class="accordion" (click)="testClick()">Section 2</button>
 <div class="panel1">
   <p>Lorem ipsum...</p>
 </div>
 
-<button class="accordion">Section 3</button>
+<button class="accordion" (click)="testClick()">Section 3</button>
 <div class="panel1">
   <p>Lorem ipsum...</p>
 </div>
+
+<script>
+
+  var acc = document.getElementsByClassName("accordion");
+  var i;
+
+  for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+      /* Toggle between adding and removing the "active" class,
+      to highlight the button that controls the panel */
+      this.classList.toggle("active");
+
+      /* Toggle between hiding and showing the active panel */
+      var panel1 = this.nextElementSibling;
+      if (panel1.style.display === "block") {
+        panel1.style.display = "none";
+      } else {
+        panel1.style.display = "block";
+      }
+    });
+  }
+</script>
