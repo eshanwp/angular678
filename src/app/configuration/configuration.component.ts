@@ -39,7 +39,7 @@ export class ConfigurationComponent implements OnInit {
   }
 
   public editService(serviceId: any): void {
-    this.router.navigate(['configuration/configuration-initializer'], { queryParams: { serviceId: 5 } });
+    this.router.navigate(['configuration/configuration-initializer'], { queryParams: { serviceId: serviceId } });
 
 
   }

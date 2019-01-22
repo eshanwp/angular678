@@ -53,7 +53,7 @@ export class ServiceInitializerComponent implements OnInit {
 
   ngOnInit() {
     debugger;
-     //this.serviceId = +this.route.snapshot.queryParamMap.get('serviceId');
+
     this.route.queryParamMap.subscribe(params => {
       this.serviceId = +params.get('serviceId');
 
