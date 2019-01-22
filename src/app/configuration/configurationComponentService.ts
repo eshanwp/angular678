@@ -18,6 +18,10 @@ export class ConfigurationComponentService implements OnInit {
   public getAllServices(): Promise<any> {
     return this.httpClientComponent.httpGet('/api/config/all-configuration');
   }
+
+  public getServiceyIdWithInfor(serviceId: number, includeDetails: boolean): Promise<any> {
+    return this.httpClientComponent.httpGet('/api/config/get-configuration?serviceId=' + serviceId + '&includeDetails=' + includeDetails);
+  }
   /*
     public getServiceById(id: number): Promise<any> {
       return this.httpClientComponent.httpGet('/service?id=' + id);
