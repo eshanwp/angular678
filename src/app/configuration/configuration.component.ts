@@ -24,7 +24,6 @@ export class ConfigurationComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(111);
     this.loadData();
   }
 

@@ -3,7 +3,6 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ConfigurationComponentService} from '../configurationComponentService';
 import {ActivatedRoute} from '@angular/router';
 import {ServiceComponentService} from '../../service/serviceComponent-service';
-import uuidv1 from 'uuid/v1';
 
 @NgModule({
   providers: [ConfigurationComponentService, ServiceComponentService],
@@ -37,19 +36,10 @@ export class ConfigurationInitializerComponent implements OnInit {
       if (this.serviceId !== undefined && this.serviceId !== null && !(this.serviceId < 1)) {
         this.getServiceById();
       } else {
-
-
-
-
         this.serviceName = null;
         this.serviceId = 0;
       }
     });
-
-
-
-
-
 
     this.listForm = this._fb.group({
       apiIdList: [this.apiList]
@@ -57,7 +47,6 @@ export class ConfigurationInitializerComponent implements OnInit {
   }
 
   initForm () {
-
     this.myForm = this._fb.group({
       serviceName: ['', [Validators.required, Validators.minLength(5)]],
       description: [''],
@@ -65,7 +54,6 @@ export class ConfigurationInitializerComponent implements OnInit {
         this.initActions(),
       ])
     });
-
   }
 
 
@@ -121,6 +109,7 @@ export class ConfigurationInitializerComponent implements OnInit {
     debugger;
     this.configurationComponentService.createServiceDefiniton(model['value']).then( response => {
       console.log("response ok");
+      //this.router.navigate(['configuration']);
     }).catch(error_response => {
       console.log("response fail");
     });
@@ -141,76 +130,31 @@ export class ConfigurationInitializerComponent implements OnInit {
 
     this.configurationComponentService.getServiceyIdWithInfor(this.serviceId, true).then(response => {
       console.log('create resposne  : ' + JSON.stringify(response, null, 2));
-      debugger;
-      let resObj = response[0];
-
-      this.populatemyFrom(resObj);
-
+      this.populatemyFrom(response[0]);
     }).catch(error => {
-      console.log('create error : ' + JSON.stringify(error, null, 2));
+      console.log('get error : ' + JSON.stringify(error, null, 2));
     });
   }
 
   populatemyFrom(data: any) {
 
-    /*debugger;
-    let tempArrayFromGroupArray = new Array<FormGroup>();
-    let actionsFormArray = new Array<FormGroup>();
-
     let actionsArray = new Array<any>();
     let variableArray = new Array<any>();
     actionsArray = data['actionFormDtos'];
 
-
-    let bb: FormGroup = this.populateActions();
     for (let i = 0; i < actionsArray.length; i++) {
+      this.addActionFormDtos();
       let tempobJ = actionsArray[i];
       variableArray = [];
       variableArray = tempobJ['keyWordFromDtos'];
-
-      let aa: FormGroup = this.populateTempArrs();
       for (let j = 0; j < variableArray.length; j++) {
-        /!*let variablesSet: TempArr;
-        variablesSet.firstKey  = variableArray['firstKey'];
-        variablesSet.regEx  = variableArray['regEx'];
-        variablesSet.fullMatch  = variableArray['fullMatch'];
-        variablesSet.ignoreCase  = variableArray['ignoreCase'];*!/
-
-        aa. setValue(variableArray[j]);
+        this.addVariable(i);
       }
-      bb:*/
-
-debugger;
-    this.myForm = this._fb.group({
-      serviceName: [data['serviceName'], [Validators.required, Validators.minLength(5)]],
-      description: [data['description']],
-      actionFormDtos: this._fb.array([
-        this.populateActions(),
-      ])
-    });
-
+    }
     this.myForm.patchValue(data);
   }
 
 
-  populateActions() {
-    return this._fb.group({
-      actionDesc: ['', Validators.required],
-      apiId: [''],
-      keyWordFromDtos: this._fb.array([
-        this.populateTempArrs(),
-      ])
-    });
-  }
-
-  populateTempArrs() {
-    return this._fb.group({
-      firstKey: [''],
-      regEx: [''],
-      fullMatch: [0],
-      ignoreCase: [0]
-    });
-  }
 
 }
 
