@@ -56,19 +56,6 @@ export class ConfigurationInitializerComponent implements OnInit {
     });
   }
 
-  test1Click(actions) {
-   // debugger;
-    this.varId = uuidv1();
-    //this.activeNodeUuid = tempUuid;
-  }
-
-  test1Click1(actions) {
-    // debugger;
-    this.varId = uuidv1();
-
-    //this.activeNodeUuid = tempUuid;
-  }
-
   initForm () {
 
     this.myForm = this._fb.group({
