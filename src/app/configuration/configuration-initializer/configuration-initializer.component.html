@@ -73,12 +73,16 @@
 
                               <div class="row">
                                 <div class="col-sm-12">
-                                  <div class="panel-group" id="accordion1">
-                                    <div *ngFor="let keyWordSet of actions.controls.keyWordFromDtos.controls; let j=index" class="panel panel-success">
 
+                                  <div class="panel-group" id="{{i}}">
+                                    <div *ngFor="let keyWordSet of actions.controls.keyWordFromDtos.controls; let j=index" class="panel panel-success">
+<button (click)="test1Click(actions)"></button>
+                                      {{test1Click1(actions)}}
+                                      {{varId}}
                                       <div class="panel-heading">
                                         <h5 class="panel-title">
-                                          <a data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo{{j}}"><span>Key Sets {{j + 1}}</span></a>
+
+                                          <a data-toggle="collapse" data-parent='#{{j}}' href="#collapseTwo{{j}}"><span>Key Sets {{j + 1}}</span></a>
                                           <a class="close-link pull-right" *ngIf="actions.controls.keyWordFromDtos.controls.length > 1" (click)="removeKeySet(j)">
                                             <i class="fa fa-times"></i>
                                           </a>
@@ -129,7 +133,7 @@
 
                               <div class="row" style="margin-top: 20px;">
                                 <div class="col-sm-4">
-                                  <button type="button" class="btn btn-primary btn-xs" (click)="addVariable()">Add another key set</button>
+                                  <button type="button" class="btn btn-primary btn-xs" (click)="addVariable(i)">Add another key set</button>
                                 </div>
                               </div>
                             </div>

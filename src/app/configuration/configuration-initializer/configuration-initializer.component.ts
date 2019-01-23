@@ -1,10 +1,12 @@
-import {Component, NgModule, OnInit} from '@angular/core';
+import {Component, Input, NgModule, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ConfigurationComponentService} from '../configurationComponentService';
 import {ActivatedRoute} from '@angular/router';
+import {ServiceComponentService} from '../../service/serviceComponent-service';
+import uuidv1 from 'uuid/v1';
 
 @NgModule({
-  providers: [ConfigurationComponentService],
+  providers: [ConfigurationComponentService, ServiceComponentService],
 })
 
 @Component({
@@ -14,6 +16,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ConfigurationInitializerComponent implements OnInit {
 
+  @Input() varId: any = null;
 
   public myForm: FormGroup;
   public listForm: FormGroup;
@@ -22,23 +25,19 @@ export class ConfigurationInitializerComponent implements OnInit {
   serviceName: string;
   serviceId: number;
 
-  constructor(private _fb: FormBuilder, private configurationComponentService: ConfigurationComponentService, private route: ActivatedRoute) { }
+  constructor(private _fb: FormBuilder, private configurationComponentService: ConfigurationComponentService, private route: ActivatedRoute,
+              private serviceComponentService: ServiceComponentService) { }
 
   ngOnInit() {
 
+    this.initForm();
     this.route.queryParamMap.subscribe(params => {
       this.serviceId = +params.get('serviceId');
 
       if (this.serviceId !== undefined && this.serviceId !== null && !(this.serviceId < 1)) {
         this.getServiceById();
       } else {
-        this.myForm = this._fb.group({
-          serviceName: ['', [Validators.required, Validators.minLength(5)]],
-          description: [''],
-          actionFormDtos: this._fb.array([
-            this.initActions(),
-          ])
-        });
+
 
 
 
@@ -51,17 +50,35 @@ export class ConfigurationInitializerComponent implements OnInit {
 
 
 
-    /*this.myForm = this._fb.group({
+
+    this.listForm = this._fb.group({
+      apiIdList: [this.apiList]
+    });
+  }
+
+  test1Click(actions) {
+   // debugger;
+    this.varId = uuidv1();
+    //this.activeNodeUuid = tempUuid;
+  }
+
+  test1Click1(actions) {
+    // debugger;
+    this.varId = uuidv1();
+
+    //this.activeNodeUuid = tempUuid;
+  }
+
+  initForm () {
+
+    this.myForm = this._fb.group({
       serviceName: ['', [Validators.required, Validators.minLength(5)]],
       description: [''],
       actionFormDtos: this._fb.array([
         this.initActions(),
       ])
-    });*/
-
-    this.listForm = this._fb.group({
-      apiIdList: [this.apiList]
     });
+
   }
 
 
@@ -95,11 +112,11 @@ export class ConfigurationInitializerComponent implements OnInit {
     control.removeAt(i);
   }
 
-  addVariable() {
+  addVariable(index: number) {
     debugger;
 
     const control = <FormArray>this.myForm.controls['actionFormDtos'];
-    const contro2 = <FormGroup>control.controls[0];
+    const contro2 = <FormGroup>control.controls[index];
     const contro3 = <FormArray>contro2.controls.keyWordFromDtos;
     contro3.push(this.initTempArrs());
   }
@@ -134,15 +151,13 @@ export class ConfigurationInitializerComponent implements OnInit {
   }
 
   public getServiceById() {
+
     this.configurationComponentService.getServiceyIdWithInfor(this.serviceId, true).then(response => {
       console.log('create resposne  : ' + JSON.stringify(response, null, 2));
       debugger;
-
       let resObj = response[0];
-      this.populatemyFrom(resObj);
-      delete resObj['serviceId'];
-      this.myForm.setValue(resObj); // value = response;
 
+      this.populatemyFrom(resObj);
 
     }).catch(error => {
       console.log('create error : ' + JSON.stringify(error, null, 2));
@@ -151,17 +166,43 @@ export class ConfigurationInitializerComponent implements OnInit {
 
   populatemyFrom(data: any) {
 
-    debugger;
+    /*debugger;
     let tempArrayFromGroupArray = new Array<FormGroup>();
+    let actionsFormArray = new Array<FormGroup>();
+
+    let actionsArray = new Array<any>();
+    let variableArray = new Array<any>();
+    actionsArray = data['actionFormDtos'];
 
 
+    let bb: FormGroup = this.populateActions();
+    for (let i = 0; i < actionsArray.length; i++) {
+      let tempobJ = actionsArray[i];
+      variableArray = [];
+      variableArray = tempobJ['keyWordFromDtos'];
+
+      let aa: FormGroup = this.populateTempArrs();
+      for (let j = 0; j < variableArray.length; j++) {
+        /!*let variablesSet: TempArr;
+        variablesSet.firstKey  = variableArray['firstKey'];
+        variablesSet.regEx  = variableArray['regEx'];
+        variablesSet.fullMatch  = variableArray['fullMatch'];
+        variablesSet.ignoreCase  = variableArray['ignoreCase'];*!/
+
+        aa. setValue(variableArray[j]);
+      }
+      bb:*/
+
+debugger;
     this.myForm = this._fb.group({
-      serviceName: ['', [Validators.required, Validators.minLength(5)]],
-      description: [''],
+      serviceName: [data['serviceName'], [Validators.required, Validators.minLength(5)]],
+      description: [data['description']],
       actionFormDtos: this._fb.array([
         this.populateActions(),
       ])
     });
+
+    this.myForm.patchValue(data);
   }
 
 
