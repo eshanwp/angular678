@@ -7,6 +7,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import { ServiceListComponent } from './service/service-list/service-list.component';
 import { ServiceInitializerComponent } from './service/service-initializer/service-initializer.component';
 import { ConfigurationFormComponent } from './configuration/configuration-form/configuration-form.component';
+import { ConfigurationCxResponseComponent } from './configuration/configuration-cx-response/list/configuration-cx-response.component';
 
 // User
 import { ListComponent } from './user/list/list.component';
@@ -28,7 +29,8 @@ const routes: Routes = [
       {path: 'service/service-initializer', component: ServiceInitializerComponent},
       {path: 'configuration', component: ConfigurationComponent},
       {path: 'configuration/configuration-initializer', component: ConfigurationInitializerComponent},
-      {path: 'configuration/configuration-form', component: ConfigurationFormComponent}
+      {path: 'configuration/configuration-form', component: ConfigurationFormComponent},
+      {path: 'configuration/cx-response', component: ConfigurationCxResponseComponent}
 
     ]
   },

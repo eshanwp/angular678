@@ -1,0 +1,99 @@
+<div class="wrapper wrapper-content">
+
+  <div class="row">
+    <div class="ibox float-e-margins">
+      <div class="ibox-title">
+        <h5>Customer Response List</h5>
+      </div>
+
+
+      <div class="ibox-content">
+        <div class="row">
+          <a>
+            <button class="btn button-shadow button-margin btn-create" type="button" data-toggle="modal"
+                    data-target="#myModal5"><i class="fa fa-paste"></i> Create Response
+            </button>
+          </a>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+            <table class="table dataTables-example table-hover" datatable [dtOptions]="dtOptions">
+              <thead>
+              <tr>
+                <th>Code</th>
+                <th>Description</th>
+                <th>SMS</th>
+                <th>Source Port</th>
+                <th>Send to notify No</th>
+                <th>Send to originate No</th>
+                <th>Action</th>
+              </tr>
+              </thead>
+              <tbody *ngIf="cxResponses?.length != 0">
+              <tr *ngFor="let cxResponse of cxResponses">
+                <td>{{ cxResponse.resCode }}</td>
+                <td>{{ cxResponse.resDesc }}</td>
+                <td>{{ cxResponse.sms }}</td>
+                <td>{{ cxResponse.sourcePort }}</td>
+                <td>{{ cxResponse.sendToNotifyNo }}</td>
+                <td>{{ cxResponse.sendToOriginatedNo }}</td>
+                <td>
+                  <a title="Edit Response">
+                    <button type="button" class="btn button-shadow btn-edit" (click)="editResponse(cxResponse.id)">
+                      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </button>
+                  </a>
+
+                  <a title="Channel Mapping">
+                    <button type="button" class="btn button-shadow btn-show">
+                      <span class="fa fa-cubes" aria-hidden="true"></span>
+                    </button>
+                  </a>
+
+                </td>
+              </tr>
+
+
+              </tbody>
+              <!--<tbody *ngIf="cxResponses.length === 0">-->
+              <!--<tr>-->
+              <!--<td colspan="3" class="no-data-available">No data!</td>-->
+              <!--</tr>-->
+              <!--<tbody>-->
+            </table>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!--CX Response Model-->
+<div class="modal inmodal fade" id="myModal5" tabindex="-1" role="dialog"  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Modal title</h4>
+        <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+      </div>
+      <div class="modal-body">
+        <p><strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+          printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+          remaining essentially unchanged.</p>
+        <p><strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+          printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+          remaining essentially unchanged.</p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+

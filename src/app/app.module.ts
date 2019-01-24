@@ -36,7 +36,7 @@ import { ConfigurationComponent } from './configuration/configuration.component'
 import { ConfigurationInitializerComponent } from './configuration/configuration-initializer/configuration-initializer.component';
 import {ConfigurationComponentService} from './configuration/configurationComponentService';
 import { ConfigurationFormComponent } from './configuration/configuration-form/configuration-form.component';
-
+import { ConfigurationCxResponseComponent } from './configuration/configuration-cx-response/list/configuration-cx-response.component';
 
 
 @NgModule({
@@ -61,7 +61,8 @@ import { ConfigurationFormComponent } from './configuration/configuration-form/c
     ServiceDefaultBlockComponent,
     ConfigurationComponent,
     ConfigurationInitializerComponent,
-    ConfigurationFormComponent
+    ConfigurationFormComponent,
+    ConfigurationCxResponseComponent
   ],
   imports: [
     BrowserModule,

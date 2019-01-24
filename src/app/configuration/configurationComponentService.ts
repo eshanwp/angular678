@@ -5,6 +5,7 @@ import {HttpClientComponent} from '../http-client/http-client.component';
 @Injectable()
 export class ConfigurationComponentService implements OnInit {
 
+
   ngOnInit(): void {
   }
 
@@ -31,6 +32,12 @@ export class ConfigurationComponentService implements OnInit {
     return this.httpClientComponent.getJSON(path);
   }
 
+  /**
+   * @Des find all cx_response
+   **/
+  findAllCxResponse(): Promise<any> {
+    return this.httpClientComponent.httpGet('/api/cx-response');
+  }
 
 
 }
